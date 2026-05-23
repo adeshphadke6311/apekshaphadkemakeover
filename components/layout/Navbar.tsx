@@ -1,64 +1,120 @@
 "use client";
 
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const closeMenu = () => setIsOpen(false);
+
   return (
     <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-lg">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex h-16 items-center justify-between">
-        
-        <h1 className="heading-font text-2xl font-bold gold-text">
+      <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4 md:px-6 lg:px-8">
+
+        {/* Logo */}
+        <Link
+          href="/"
+          className="heading-font text-2xl font-bold gold-text"
+        >
           Sajshringar
-        </h1>
+        </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
-          <a href="#home" className="hover:text-pink-400 transition">
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+
+          <Link
+            href="/"
+            className="transition hover:text-pink-400"
+          >
             Home
-          </a>
+          </Link>
 
-          <a href="#services" className="hover:text-pink-400 transition">
+          <Link
+            href="/services"
+            className="transition hover:text-pink-400"
+          >
             Services
-          </a>
+          </Link>
 
-          <a href="#gallery" className="hover:text-pink-400 transition">
+          <Link
+            href="/gallery"
+            className="transition hover:text-pink-400"
+          >
             Gallery
-          </a>
+          </Link>
 
-          <a href="#contact" className="hover:text-pink-400 transition">
+          <Link
+            href="/contact"
+            className="transition hover:text-pink-400"
+          >
             Contact
-          </a>
+          </Link>
         </nav>
 
-        {/* Desktop Button */}
-        <button className="hidden md:block rounded-full bg-[#ff4fa3] px-5 py-2 text-sm font-medium transition hover:scale-105">
+        {/* Desktop CTA */}
+        <Link
+          href="/payment"
+          className="hidden rounded-full bg-[#ff4fa3] px-5 py-2 text-sm font-medium transition hover:scale-105 md:block"
+        >
           Book Now
-        </button>
+        </Link>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden"
+          aria-label="Toggle Menu"
         >
-          {isOpen ? <X /> : <Menu />}
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden border-t border-white/10 bg-[#050816]">
-          <nav className="flex flex-col p-4 space-y-4 text-sm">
-            <a href="#home">Home</a>
-            <a href="#services">Services</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#contact">Contact</a>
+        <div className="border-t border-white/10 bg-[#050816] md:hidden">
+          <nav className="flex flex-col space-y-4 p-4 text-sm font-medium">
 
-            <button className="rounded-full bg-[#ff4fa3] px-5 py-3 font-medium">
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className="transition hover:text-pink-400"
+            >
+              Home
+            </Link>
+
+            <Link
+              href="/services"
+              onClick={closeMenu}
+              className="transition hover:text-pink-400"
+            >
+              Services
+            </Link>
+
+            <Link
+              href="/gallery"
+              onClick={closeMenu}
+              className="transition hover:text-pink-400"
+            >
+              Gallery
+            </Link>
+
+            <Link
+              href="/contact"
+              onClick={closeMenu}
+              className="transition hover:text-pink-400"
+            >
+              Contact
+            </Link>
+
+            <Link
+              href="/payment"
+              onClick={closeMenu}
+              className="rounded-full bg-[#ff4fa3] px-5 py-3 text-center font-medium transition hover:scale-[1.02]"
+            >
               Book Appointment
-            </button>
+            </Link>
           </nav>
         </div>
       )}
