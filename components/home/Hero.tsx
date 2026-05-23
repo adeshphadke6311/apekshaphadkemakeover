@@ -6,7 +6,7 @@ export default function Hero() {
       id="home"
       className="relative flex min-h-screen items-center overflow-hidden"
     >
-      <div className="container-custom grid gap-10 pt-24 md:grid-cols-2 md:items-center">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 grid gap-10 pt-24 md:grid-cols-2 md:items-center">
         <div>
           <p className="mb-4 text-sm uppercase tracking-[0.3em] text-pink-400">
             Bridal Makeup Artist & Training Academy
