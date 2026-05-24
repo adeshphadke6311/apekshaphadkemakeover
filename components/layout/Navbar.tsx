@@ -1,117 +1,179 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+
+import {
+  Menu,
+  X,
+  Sparkles,
+} from "lucide-react";
+
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const closeMenu = () => setIsOpen(false);
+  const [isOpen, setIsOpen] =
+    useState(false);
+
+  const [scrolled, setScrolled] =
+    useState(false);
+
+  const closeMenu = () =>
+    setIsOpen(false);
+
+  useEffect(() => {
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
+
+    return () =>
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
+  }, []);
+
+  const navLinks = [
+    {
+      name: "Home",
+      href: "/",
+    },
+
+    {
+      name: "Services",
+      href: "/services",
+    },
+
+    {
+      name: "Portfolio",
+      href: "/portfolio",
+    },
+
+    {
+      name: "Gallery",
+      href: "/gallery",
+    },
+
+    {
+      name: "Contact",
+      href: "/contact",
+    },
+  ];
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-lg">
-      <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4 md:px-6 lg:px-8">
+    <header
+      className={`fixed top-0 z-50 w-full transition-all duration-500
+      ${
+        scrolled
+          ? "border-b border-white/10 bg-[#050816]/90 shadow-[0_0_40px_rgba(255,79,163,0.08)] backdrop-blur-2xl"
+          : "bg-transparent"
+      }`}
+    >
 
-        {/* Logo */}
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
+
+        {/* LOGO */}
         <Link
           href="/"
-          className="heading-font text-2xl font-bold gold-text"
+          className="group flex items-center gap-3"
         >
-          Sajshringar
+
+          {/* ICON */}
+          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-pink-600 shadow-[0_0_20px_rgba(255,79,163,0.35)] transition duration-300 group-hover:scale-110">
+
+            <Sparkles className="h-5 w-5 text-white" />
+          </div>
+
+          {/* TEXT */}
+          <div>
+
+            <h1 className="heading-font text-2xl font-bold gold-text">
+              Sajshringar
+            </h1>
+
+            <p className="text-[10px] uppercase tracking-[0.25em] text-white/50">
+              Beauty Studio
+            </p>
+          </div>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+        {/* DESKTOP NAVIGATION */}
+        <nav className="hidden items-center gap-8 md:flex">
 
-          <Link
-            href="/"
-            className="transition hover:text-pink-400"
-          >
-            Home
-          </Link>
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="relative text-sm font-medium text-white/75 transition duration-300 hover:text-pink-400"
+            >
 
-          <Link
-            href="/services"
-            className="transition hover:text-pink-400"
-          >
-            Services
-          </Link>
+              <span className="relative">
 
-          <Link
-            href="/gallery"
-            className="transition hover:text-pink-400"
-          >
-            Gallery
-          </Link>
+                {link.name}
 
-          <Link
-            href="/contact"
-            className="transition hover:text-pink-400"
-          >
-            Contact
-          </Link>
+                <span className="absolute -bottom-2 left-0 h-[2px] w-0 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 transition-all duration-300 group-hover:w-full" />
+              </span>
+            </Link>
+          ))}
         </nav>
 
-        {/* Desktop CTA */}
-        <Link
-          href="/payment"
-          className="hidden rounded-full bg-[#ff4fa3] px-5 py-2 text-sm font-medium transition hover:scale-105 md:block"
-        >
-          Book Now
-        </Link>
+        {/* RIGHT SIDE */}
+        <div className="flex items-center gap-4">
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden"
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+          {/* DESKTOP CTA */}
+          <Link
+            href="/payment"
+            className="hidden rounded-full bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(255,79,163,0.35)] md:block"
+          >
+            Book Now
+          </Link>
+
+          {/* MOBILE BUTTON */}
+          <button
+            onClick={() =>
+              setIsOpen(!isOpen)
+            }
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 backdrop-blur-xl transition duration-300 hover:border-pink-400/40 md:hidden"
+            aria-label="Toggle Menu"
+          >
+
+            {isOpen ? (
+              <X size={24} />
+            ) : (
+              <Menu size={24} />
+            )}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       {isOpen && (
-        <div className="border-t border-white/10 bg-[#050816] md:hidden">
-          <nav className="flex flex-col space-y-4 p-4 text-sm font-medium">
+        <div className="border-t border-white/10 bg-[#050816]/95 backdrop-blur-2xl md:hidden">
 
-            <Link
-              href="/"
-              onClick={closeMenu}
-              className="transition hover:text-pink-400"
-            >
-              Home
-            </Link>
+          <nav className="flex flex-col gap-5 px-5 py-6">
 
-            <Link
-              href="/services"
-              onClick={closeMenu}
-              className="transition hover:text-pink-400"
-            >
-              Services
-            </Link>
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={closeMenu}
+                className="rounded-2xl border border-white/5 bg-white/5 px-5 py-4 text-sm font-medium text-white/80 transition duration-300 hover:border-pink-500/30 hover:bg-pink-500/10 hover:text-pink-400"
+              >
+                {link.name}
+              </Link>
+            ))}
 
-            <Link
-              href="/gallery"
-              onClick={closeMenu}
-              className="transition hover:text-pink-400"
-            >
-              Gallery
-            </Link>
-
-            <Link
-              href="/contact"
-              onClick={closeMenu}
-              className="transition hover:text-pink-400"
-            >
-              Contact
-            </Link>
-
+            {/* MOBILE CTA */}
             <Link
               href="/payment"
               onClick={closeMenu}
-              className="rounded-full bg-[#ff4fa3] px-5 py-3 text-center font-medium transition hover:scale-[1.02]"
+              className="mt-2 rounded-full bg-gradient-to-r from-pink-500 to-pink-600 px-5 py-4 text-center text-sm font-semibold text-white transition duration-300 hover:scale-[1.02]"
             >
               Book Appointment
             </Link>

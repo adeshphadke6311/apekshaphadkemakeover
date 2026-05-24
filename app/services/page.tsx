@@ -5,6 +5,8 @@ import {
   Gem,
 } from "lucide-react";
 
+import Link from "next/link";
+
 export const metadata = {
   title: "Services | Sajshringar by Apeksha",
   description:
@@ -40,23 +42,25 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-[#050816] pt-32 pb-24 text-white">
+    <main className="min-h-screen bg-[#050816] pt-24 pb-24 text-white md:pt-32">
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
 
-        {/* Hero */}
-        <div className="mb-24 text-center">
+        {/* HERO */}
+        <div className="mb-20 text-center md:mb-24">
 
           <p className="mb-4 text-sm uppercase tracking-[0.3em] text-pink-400">
             Our Professional Services
           </p>
 
-          <h1 className="heading-font text-5xl md:text-7xl font-bold leading-tight">
+          <h1 className="heading-font text-4xl font-bold leading-tight md:text-7xl">
             Beauty &
             <span className="gold-text"> Creativity</span>
           </h1>
 
-          <p className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-white/70">
+          <div className="mx-auto mt-6 h-[2px] w-24 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 md:w-28" />
+
+          <p className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-white/70 md:text-lg">
             Explore our premium bridal beauty services,
             professional Aari work training, jewellery making,
             and beauty academy programs designed with elegance,
@@ -64,8 +68,8 @@ export default function ServicesPage() {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid gap-10 md:grid-cols-2">
+        {/* SERVICES GRID */}
+        <div className="grid gap-8 md:grid-cols-2 md:gap-10">
 
           {services.map((service) => {
             const Icon = service.icon;
@@ -73,17 +77,22 @@ export default function ServicesPage() {
             return (
               <div
                 key={service.title}
-                className="rounded-[2rem] border border-white/10 bg-white/5 p-10 transition duration-300 hover:-translate-y-2 hover:border-pink-400/40"
+                className="group rounded-[2rem] border border-white/10 bg-white/5 p-8 transition-all duration-300 hover:-translate-y-2 hover:border-pink-400/40 hover:shadow-[0_0_40px_rgba(255,79,163,0.12)] md:p-10"
               >
-                <div className="mb-8 inline-flex rounded-2xl bg-pink-500/10 p-5 text-pink-400">
+
+                {/* ICON */}
+                <div className="mb-8 inline-flex rounded-2xl bg-pink-500/10 p-5 text-pink-400 transition duration-300 group-hover:scale-110">
+
                   <Icon size={40} />
                 </div>
 
-                <h2 className="mb-6 text-4xl font-bold">
+                {/* TITLE */}
+                <h2 className="mb-6 text-3xl font-bold md:text-4xl">
                   {service.title}
                 </h2>
 
-                <p className="text-lg leading-relaxed text-white/70">
+                {/* DESCRIPTION */}
+                <p className="text-base leading-relaxed text-white/70 md:text-lg">
                   {service.description}
                 </p>
               </div>
@@ -92,26 +101,46 @@ export default function ServicesPage() {
         </div>
 
         {/* CTA */}
-        <div className="mt-28 rounded-[2rem] border border-white/10 bg-gradient-to-r from-pink-500/10 to-yellow-500/10 p-12 text-center">
+        <div className="mt-24 rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-pink-500/10 via-transparent to-yellow-500/10 p-8 text-center shadow-[0_0_60px_rgba(255,79,163,0.08)] backdrop-blur-xl md:mt-28 md:p-14">
 
-          <h2 className="heading-font text-4xl md:text-5xl font-bold">
+          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-pink-400">
+            Luxury Beauty Experience
+          </p>
+
+          <h2 className="heading-font text-4xl font-bold leading-tight md:text-6xl">
             Ready To Transform
             <span className="gold-text"> Your Look?</span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-white/70 leading-relaxed">
+          <div className="mx-auto mt-6 h-[2px] w-24 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400" />
+
+          <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
             Book your appointment today and experience
-            professional beauty artistry crafted with elegance.
+            professional beauty artistry crafted with elegance,
+            luxury, and perfection.
           </p>
 
-          <a
-            href="https://wa.me/917498645883"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-10 inline-block rounded-full bg-[#ff4fa3] px-8 py-4 text-lg font-medium transition hover:scale-105"
-          >
-            Book Appointment
-          </a>
+          {/* BUTTONS */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+
+            {/* BOOK APPOINTMENT */}
+            <Link
+              href="/payment"
+              className="rounded-full bg-gradient-to-r from-pink-500 to-pink-600 px-8 py-4 text-lg font-semibold text-white transition hover:scale-105 hover:shadow-[0_0_30px_rgba(255,79,163,0.35)]"
+            >
+              Book Appointment
+            </Link>
+
+            {/* WHATSAPP */}
+            <a
+              href="https://wa.me/917498645883"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/15 px-8 py-4 text-lg font-medium transition hover:bg-white/10"
+            >
+              WhatsApp Inquiry
+            </a>
+          </div>
         </div>
       </div>
     </main>
