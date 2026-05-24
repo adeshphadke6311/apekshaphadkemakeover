@@ -44,9 +44,6 @@ export default function PaymentPage() {
     time: "",
   });
 
-  // BOOKED SLOTS
-  const bookedSlots = ["10:00 AM"];
-
   const validateStep = () => {
     const newErrors = {
       category: "",
@@ -61,48 +58,62 @@ export default function PaymentPage() {
 
     // STEP 1
     if (step === 1) {
+
       if (!formData.category) {
-        newErrors.category = "Please select a category";
+        newErrors.category =
+          "Please select a category";
       }
 
       if (!formData.service) {
-        newErrors.service = "Please select a service";
+        newErrors.service =
+          "Please select a service";
       }
 
       if (
         formData.category === "Training" &&
         !formData.batch
       ) {
-        newErrors.batch = "Please select a batch";
+        newErrors.batch =
+          "Please select a batch";
       }
     }
 
     // STEP 2
     if (step === 2) {
+
       if (!formData.name.trim()) {
-        newErrors.name = "Name is required";
+        newErrors.name =
+          "Name is required";
       }
 
       if (!formData.phone.trim()) {
-        newErrors.phone = "Phone number is required";
-      } else if (!/^[0-9]{10}$/.test(formData.phone)) {
+        newErrors.phone =
+          "Phone number is required";
+
+      } else if (
+        !/^[0-9]{10}$/.test(formData.phone)
+      ) {
         newErrors.phone =
           "Enter valid 10-digit phone number";
       }
 
       if (!formData.email.trim()) {
-        newErrors.email = "Email is required";
+        newErrors.email =
+          "Email is required";
       }
     }
 
     // STEP 3
     if (step === 3) {
+
       if (!formData.date) {
-        newErrors.date = "Please select date";
+        newErrors.date =
+          "Please select date";
       }
 
       if (!formData.time) {
-        newErrors.time = "Please select time slot";
+        newErrors.time =
+          "Please select time slot";
       }
     }
 
@@ -114,9 +125,12 @@ export default function PaymentPage() {
   };
 
   const nextStep = () => {
+
     if (validateStep()) {
 
-      toast.success("Step completed successfully ✨");
+      toast.success(
+        "Step completed successfully ✨"
+      );
 
       setStep(step + 1);
 
@@ -135,17 +149,20 @@ export default function PaymentPage() {
   const serviceCards = [
     {
       title: "Bridal Makeup",
-      desc: "HD & Airbrush bridal makeup package",
+      desc:
+        "HD & Airbrush bridal makeup package",
       icon: Gem,
     },
     {
       title: "Party Makeup",
-      desc: "Glam makeup for events & occasions",
+      desc:
+        "Glam makeup for events & occasions",
       icon: Sparkles,
     },
     {
       title: "Hair Styling",
-      desc: "Premium hairstyle & makeover styling",
+      desc:
+        "Premium hairstyle & makeover styling",
       icon: Scissors,
     },
   ];
@@ -170,7 +187,7 @@ export default function PaymentPage() {
             ✨ Luxury Booking ✨
           </p>
 
-          <h1 className="heading-font text-4xl font-bold leading-tight md:text-7xl">
+          <h1 className="heading-font text-[2.5rem] font-bold leading-tight md:text-7xl">
             Advance
             <span className="bg-gradient-to-r from-[#ff4fa3] to-[#ffd166] bg-clip-text text-transparent">
               {" "}
@@ -232,7 +249,7 @@ export default function PaymentPage() {
                   </div>
 
                   <p
-                    className={`mt-2 text-[11px] sm:mt-3 sm:text-sm
+                    className={`mt-2 text-xs sm:mt-3 sm:text-sm
                     ${
                       step >= item.number
                         ? "text-pink-400"
@@ -269,6 +286,7 @@ export default function PaymentPage() {
               {/* CATEGORY */}
               <div className="mb-8 grid gap-5 md:grid-cols-2">
 
+                {/* BEAUTY */}
                 <button
                   onClick={() => {
                     setFormData({
@@ -284,7 +302,8 @@ export default function PaymentPage() {
                   }}
                   className={`rounded-3xl border p-6 text-left transition-all duration-300 md:p-7
                   ${
-                    formData.category === "Beauty Services"
+                    formData.category ===
+                    "Beauty Services"
                       ? "border-pink-500 bg-pink-500/10 shadow-[0_0_30px_rgba(255,79,163,0.2)]"
                       : "border-white/10 bg-black/20"
                   }`}
@@ -307,6 +326,7 @@ export default function PaymentPage() {
                   </div>
                 </button>
 
+                {/* TRAINING */}
                 <button
                   onClick={() => {
                     setFormData({
@@ -322,7 +342,8 @@ export default function PaymentPage() {
                   }}
                   className={`rounded-3xl border p-6 text-left transition-all duration-300 md:p-7
                   ${
-                    formData.category === "Training"
+                    formData.category ===
+                    "Training"
                       ? "border-yellow-400 bg-yellow-400/10 shadow-[0_0_30px_rgba(250,204,21,0.15)]"
                       : "border-white/10 bg-black/20"
                   }`}
@@ -347,7 +368,8 @@ export default function PaymentPage() {
               </div>
 
               {/* BEAUTY SERVICES */}
-              {formData.category === "Beauty Services" && (
+              {formData.category ===
+                "Beauty Services" && (
                 <div className="grid gap-5">
 
                   {serviceCards.map((service) => {
@@ -369,12 +391,14 @@ export default function PaymentPage() {
                         }}
                         className={`relative rounded-3xl border p-5 text-left transition-all duration-300 md:p-6
                         ${
-                          formData.service === service.title
+                          formData.service ===
+                          service.title
                             ? "border-pink-500 bg-pink-500/10"
                             : "border-white/10 bg-black/20"
                         }`}
                       >
-                        {formData.service === service.title && (
+                        {formData.service ===
+                          service.title && (
                           <CheckCircle2 className="absolute right-5 top-5 h-6 w-6 text-pink-400" />
                         )}
 
@@ -399,7 +423,8 @@ export default function PaymentPage() {
               )}
 
               {/* TRAINING */}
-              {formData.category === "Training" && (
+              {formData.category ===
+                "Training" && (
                 <div className="grid gap-5">
 
                   {trainingCards.map((service) => (
@@ -418,12 +443,14 @@ export default function PaymentPage() {
                       }}
                       className={`relative min-h-[110px] rounded-3xl border px-5 py-5 text-left transition-all duration-300 md:min-h-[120px] md:px-6
                       ${
-                        formData.service === service
+                        formData.service ===
+                        service
                           ? "border-yellow-400 bg-yellow-400/10"
                           : "border-white/10 bg-black/20"
                       }`}
                     >
-                      {formData.service === service && (
+                      {formData.service ===
+                        service && (
                         <CheckCircle2 className="absolute right-5 top-5 h-6 w-6 text-yellow-300" />
                       )}
 
@@ -476,6 +503,7 @@ export default function PaymentPage() {
                 </div>
               )}
 
+              {/* ERRORS */}
               {errors.service && (
                 <p className="mt-4 text-sm text-red-400">
                   {errors.service}
@@ -488,6 +516,7 @@ export default function PaymentPage() {
                 </p>
               )}
 
+              {/* BUTTON */}
               <button
                 onClick={nextStep}
                 className="mt-10 flex w-full items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-pink-500 to-pink-600 py-4 text-base font-semibold transition hover:scale-[1.015] hover:shadow-[0_0_30px_rgba(255,79,163,0.35)] md:py-5 md:text-lg"
@@ -583,18 +612,18 @@ export default function PaymentPage() {
                   )}
                 </div>
 
-                <div className="flex gap-4">
+                <div className="flex flex-col gap-4 sm:flex-row">
 
                   <button
                     onClick={prevStep}
-                    className="w-1/2 rounded-2xl border border-white/10 py-4 text-sm md:text-base"
+                    className="w-full rounded-2xl border border-white/10 py-4 text-sm md:text-base sm:w-1/2"
                   >
                     Back
                   </button>
 
                   <button
                     onClick={nextStep}
-                    className="w-1/2 rounded-2xl bg-gradient-to-r from-pink-500 to-pink-600 py-4 text-sm md:text-base"
+                    className="w-full rounded-2xl bg-gradient-to-r from-pink-500 to-pink-600 py-4 text-sm md:text-base sm:w-1/2"
                   >
                     Continue
                   </button>
@@ -617,7 +646,11 @@ export default function PaymentPage() {
                 <div>
                   <input
                     type="date"
-                    min={new Date().toISOString().split("T")[0]}
+                    min={
+                      new Date()
+                        .toISOString()
+                        .split("T")[0]
+                    }
                     className="w-full rounded-2xl bg-[#1b1f35] p-4 text-sm outline-none md:text-base"
                     onChange={(e) => {
                       setFormData({
@@ -684,18 +717,18 @@ export default function PaymentPage() {
                   </p>
                 )}
 
-                <div className="flex gap-4">
+                <div className="flex flex-col gap-4 sm:flex-row">
 
                   <button
                     onClick={prevStep}
-                    className="w-1/2 rounded-2xl border border-white/10 py-4 text-sm md:text-base"
+                    className="w-full rounded-2xl border border-white/10 py-4 text-sm md:text-base sm:w-1/2"
                   >
                     Back
                   </button>
 
                   <button
                     onClick={nextStep}
-                    className="w-1/2 rounded-2xl bg-gradient-to-r from-pink-500 to-pink-600 py-4 text-sm md:text-base"
+                    className="w-full rounded-2xl bg-gradient-to-r from-pink-500 to-pink-600 py-4 text-sm md:text-base sm:w-1/2"
                   >
                     Continue
                   </button>
@@ -788,11 +821,11 @@ export default function PaymentPage() {
               </div>
 
               {/* STICKY BUTTONS */}
-              <div className="sticky bottom-4 mt-10 flex gap-4 rounded-3xl bg-[#050816]/80 p-2 backdrop-blur-xl">
+              <div className="sticky bottom-4 mt-10 flex flex-col gap-4 rounded-3xl bg-[#050816]/80 p-2 backdrop-blur-xl sm:flex-row">
 
                 <button
                   onClick={prevStep}
-                  className="w-1/2 rounded-2xl border border-white/10 py-4 text-sm md:py-5 md:text-base"
+                  className="w-full rounded-2xl border border-white/10 py-4 text-sm md:py-5 md:text-base sm:w-1/2"
                 >
                   Back
                 </button>
@@ -826,7 +859,7 @@ Phone: ${formData.phone}`;
                       );
                     }, 3000);
                   }}
-                  className="flex w-1/2 items-center justify-center rounded-2xl bg-gradient-to-r from-pink-500 to-pink-600 py-4 text-sm font-semibold transition hover:scale-[1.015] hover:shadow-[0_0_30px_rgba(255,79,163,0.35)] md:py-5 md:text-base"
+                  className="flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-pink-500 to-pink-600 py-4 text-sm font-semibold transition hover:scale-[1.015] hover:shadow-[0_0_30px_rgba(255,79,163,0.35)] md:py-5 md:text-base sm:w-1/2"
                 >
                   Proceed To Payment
                 </a>
