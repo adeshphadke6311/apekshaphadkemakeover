@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins, Playfair_Display } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 
+import Navbar from "@/components/layout/Navbar";
+
 import "./globals.css";
 
 const poppins = Poppins({
@@ -17,16 +19,38 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Sajshringar by Apeksha",
+  title: {
+    default: "Sajshringar by Apeksha",
+    template: "%s | Sajshringar by Apeksha",
+  },
+
   description:
-    "Professional bridal makeup artist, Aari work classes, Nath & jewellery making, and training academy.",
+    "Professional bridal makeup artist, Aari work classes, Nath & jewellery making, and beauty training academy in Khopoli.",
+
   keywords: [
     "bridal makeup",
     "makeup artist",
     "aari work classes",
     "bridal makeup khopoli",
     "HD makeup",
+    "airbrush makeup",
+    "beauty academy",
+    "jewellery making",
   ],
+
+  openGraph: {
+    title: "Sajshringar by Apeksha",
+    description:
+      "Professional bridal makeup artist and beauty academy.",
+
+    url: "https://apekshaphadkemakeover.vercel.app",
+
+    siteName: "Sajshringar by Apeksha",
+
+    locale: "en_IN",
+
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -40,6 +64,9 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${playfair.variable} bg-[#050816] text-white antialiased`}
       >
+
+        {/* GLOBAL NAVBAR */}
+        <Navbar />
 
         {/* TOAST NOTIFICATIONS */}
         <Toaster
@@ -73,7 +100,11 @@ export default function RootLayout({
           }}
         />
 
-        {children}
+        {/* PAGE CONTENT */}
+        <main>
+          {children}
+        </main>
+
       </body>
     </html>
   );

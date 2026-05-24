@@ -10,7 +10,7 @@ import WhatsappButton from "@/components/shared/WhatsappButton";
 export default function Home() {
   return (
     <>
-      <Navbar />
+    
 
       <main>
         <Hero />

@@ -8,7 +8,10 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 
 export default function Navbar() {
 
@@ -37,41 +40,42 @@ export default function Navbar() {
         "scroll",
         handleScroll
       );
+
   }, []);
 
   const navLinks = [
-    {
-      name: "Home",
-      href: "/",
-    },
+  {
+    name: "Home",
+    href: "/",
+  },
 
-    {
-      name: "Services",
-      href: "/services",
-    },
+  {
+    name: "Services",
+    href: "/services",
+  },
 
-    {
-      name: "Portfolio",
-      href: "/portfolio",
-    },
+  {
+    name: "Portfolio",
+    href: "/portfolio",
+  },
 
-    {
-      name: "Gallery",
-      href: "/gallery",
-    },
+  {
+    name: "Gallery",
+    href: "/gallery",
+  },
 
-    {
-      name: "Contact",
-      href: "/contact",
-    },
-  ];
+  {
+    name: "Contact",
+    href: "/contact",
+  },
+];
 
   return (
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-500
       ${
         scrolled
-          ? "border-b border-white/10 bg-[#050816]/90 shadow-[0_0_40px_rgba(255,79,163,0.08)] backdrop-blur-2xl"
+          ? "border-b border-white/10 bg-[#050816]/85 backdrop-blur-2xl shadow-[0_0_40px_rgba(255,79,163,0.08)]"
           : "bg-transparent"
       }`}
     >
@@ -110,15 +114,12 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="relative text-sm font-medium text-white/75 transition duration-300 hover:text-pink-400"
+              className="group relative text-sm font-medium text-white/75 transition duration-300 hover:text-pink-400"
             >
 
-              <span className="relative">
+              {link.name}
 
-                {link.name}
-
-                <span className="absolute -bottom-2 left-0 h-[2px] w-0 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 transition-all duration-300 group-hover:w-full" />
-              </span>
+              <span className="absolute -bottom-2 left-0 h-[2px] w-0 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </nav>
@@ -143,18 +144,28 @@ export default function Navbar() {
             aria-label="Toggle Menu"
           >
 
-            {isOpen ? (
-              <X size={24} />
-            ) : (
-              <Menu size={24} />
-            )}
+            <div className="transition-all duration-300">
+              {isOpen ? (
+                <X size={24} />
+              ) : (
+                <Menu size={24} />
+              )}
+            </div>
           </button>
         </div>
       </div>
 
       {/* MOBILE MENU */}
-      {isOpen && (
-        <div className="border-t border-white/10 bg-[#050816]/95 backdrop-blur-2xl md:hidden">
+      <div
+        className={`overflow-hidden transition-all duration-500 md:hidden
+        ${
+          isOpen
+            ? "max-h-[500px] opacity-100"
+            : "max-h-0 opacity-0"
+        }`}
+      >
+
+        <div className="border-t border-white/10 bg-[#050816]/95 backdrop-blur-2xl">
 
           <nav className="flex flex-col gap-5 px-5 py-6">
 
@@ -179,7 +190,7 @@ export default function Navbar() {
             </Link>
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 }
