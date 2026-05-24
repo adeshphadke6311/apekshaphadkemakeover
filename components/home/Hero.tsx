@@ -1,6 +1,9 @@
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
+
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
@@ -20,30 +23,51 @@ export default function Hero() {
 
             gap-10
             pt-28
-            pb-14
+            pb-8
 
-            md:grid-cols-[1.05fr_0.95fr]
-            md:gap-8
-            md:pt-24
-            md:pb-12
-
-            tablet:grid-cols-[1.08fr_0.92fr]
+            tablet:grid-cols-[1.05fr_0.95fr]
             tablet:gap-8
             tablet:pt-20
-            tablet:pb-10
+            tablet:pb-6
 
             laptop:grid-cols-2
             laptop:gap-16
             laptop:pt-32
-            laptop:pb-20
+            laptop:pb-10
           "
         >
 
           {/* LEFT CONTENT */}
-          <div className="max-w-[680px]">
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -60,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.9,
+              ease: "easeOut",
+            }}
+            className="max-w-[680px]"
+          >
 
             {/* TAG */}
-            <p
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.2,
+                duration: 0.6,
+              }}
               className="
                 mb-5 uppercase tracking-[0.35em]
                 text-pink-400
@@ -54,10 +78,22 @@ export default function Hero() {
               "
             >
               Bridal Makeup Artist & Training Academy
-            </p>
+            </motion.p>
 
             {/* HEADING */}
-            <h1
+            <motion.h1
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.3,
+                duration: 0.8,
+              }}
               className="
                 heading-font font-bold leading-[1.02]
 
@@ -71,13 +107,39 @@ export default function Hero() {
               <span className="gold-text">
                 Sajshringar
               </span>
-            </h1>
+            </motion.h1>
 
             {/* LINE */}
-            <div className="mt-6 h-[2px] w-24 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400" />
+            <motion.div
+              initial={{
+                width: 0,
+                opacity: 0,
+              }}
+              animate={{
+                width: 96,
+                opacity: 1,
+              }}
+              transition={{
+                delay: 0.6,
+                duration: 0.7,
+              }}
+              className="mt-6 h-[2px] rounded-full bg-gradient-to-r from-pink-500 to-yellow-400"
+            />
 
             {/* DESCRIPTION */}
-            <p
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.5,
+                duration: 0.7,
+              }}
               className="
                 mt-8 max-w-[620px]
                 leading-relaxed text-white/75
@@ -91,10 +153,22 @@ export default function Hero() {
               Nath & jewellery making, and luxury beauty
               training academy crafted with elegance and
               perfection.
-            </p>
+            </motion.p>
 
             {/* BUTTONS */}
-            <div
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.7,
+                duration: 0.7,
+              }}
               className="
                 mt-10 flex flex-wrap items-center gap-4
               "
@@ -132,20 +206,42 @@ export default function Hero() {
               >
                 View Gallery
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* RIGHT SIDE */}
-          <div
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 60,
+              scale: 0.95,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+            }}
+            transition={{
+              duration: 1,
+              ease: "easeOut",
+            }}
             className="
-              flex flex-col items-center justify-center
+              flex flex-col items-center
 
-              md:items-end
+              tablet:items-center
             "
           >
 
             {/* IMAGE CARD */}
-            <div className="relative">
+            <motion.div
+              whileHover={{
+                scale: 1.02,
+              }}
+              transition={{
+                duration: 0.3,
+              }}
+              className="relative"
+            >
 
               {/* GLOW */}
               <div className="absolute inset-0 rounded-[2rem] bg-pink-500/20 blur-3xl" />
@@ -165,7 +261,19 @@ export default function Hero() {
               >
 
                 {/* TOP BADGE */}
-                <div
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    y: -10,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: 1,
+                    duration: 0.5,
+                  }}
                   className="
                     absolute left-4 top-4 z-20
 
@@ -181,32 +289,52 @@ export default function Hero() {
                     backdrop-blur-xl
                   "
                 >
+                </motion.div>
 
-                </div>
+                <motion.div
+                  animate={{
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 4,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Image
+                    src="/images/sajshringar-logo.jpeg"
+                    alt="Sajshringar by Apeksha"
+                    width={520}
+                    height={520}
+                    priority
+                    className="
+                      h-auto w-full object-contain
 
-                <Image
-                  src="/images/sajshringar-logo.jpeg"
-                  alt="Sajshringar by Apeksha"
-                  width={520}
-                  height={520}
-                  priority
-                  className="
-                    h-auto w-full object-contain
+                      max-w-[200px]
 
-                    max-w-[200px]
+                      sm:max-w-[240px]
 
-                    sm:max-w-[240px]
+                      tablet:max-w-[300px]
 
-                    md:max-w-[260px]
-
-                    tablet:max-w-[300px]
-
-                    laptop:max-w-[420px]
-                  "
-                />
+                      laptop:max-w-[420px]
+                    "
+                  />
+                </motion.div>
 
                 {/* BOTTOM BADGE */}
-                <div
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    y: 10,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    delay: 1.2,
+                    duration: 0.5,
+                  }}
                   className="
                     absolute bottom-4 left-1/2
                     -translate-x-1/2
@@ -221,25 +349,44 @@ export default function Hero() {
                     backdrop-blur-xl
                   "
                 >
-
-                </div>
+  
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
             {/* STATS */}
-            <div
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 1,
+                duration: 0.8,
+              }}
               className="
-                mt-4 tablet:mt-5 laptop:mt-6
+                mt-5
 
-                flex gap-4
-
-                md:w-full
-                md:max-w-[340px]
+                flex w-full
+                max-w-[320px]
+                items-center
+                justify-center
+                gap-4
               "
             >
 
               {/* CARD 1 */}
-              <div
+              <motion.div
+                whileHover={{
+                  y: -6,
+                }}
+                transition={{
+                  duration: 0.3,
+                }}
                 className="
                   flex-1 rounded-3xl
                   border border-white/10
@@ -255,10 +402,16 @@ export default function Hero() {
                 <p className="mt-2 text-sm text-white/65">
                   Happy Clients
                 </p>
-              </div>
+              </motion.div>
 
               {/* CARD 2 */}
-              <div
+              <motion.div
+                whileHover={{
+                  y: -6,
+                }}
+                transition={{
+                  duration: 0.3,
+                }}
                 className="
                   flex-1 rounded-3xl
                   border border-white/10
@@ -274,12 +427,11 @@ export default function Hero() {
                 <p className="mt-2 text-sm text-white/65">
                   Premium Services
                 </p>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
-

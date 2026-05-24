@@ -7,126 +7,420 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-[#050816] py-24 md:py-32"
+      className="
+        relative overflow-hidden
+        bg-[#050816]
+
+        py-10
+
+        sm:py-14
+
+        tablet:py-16
+
+        laptop:py-16
+      "
     >
-
       {/* BACKGROUND GLOW */}
-      <div className="absolute right-0 top-0 h-[350px] w-[350px] rounded-full bg-pink-500/10 blur-3xl" />
+      <div className="absolute left-0 top-0 h-[280px] w-[280px] rounded-full bg-pink-500/10 blur-3xl" />
 
-      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-14 px-4 md:grid-cols-2 md:gap-20 md:px-6 lg:px-8">
+      <div className="absolute bottom-0 right-0 h-[320px] w-[320px] rounded-full bg-yellow-500/10 blur-3xl" />
 
-        {/* IMAGE */}
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="relative flex justify-center"
+      <div
+        className="
+          relative z-10
+          mx-auto
+          max-w-7xl
+
+          px-4
+          sm:px-6
+          lg:px-8
+        "
+      >
+
+        {/* MAIN GRID */}
+        <div
+          className="
+            grid items-center
+
+            gap-10
+
+            tablet:grid-cols-2
+            tablet:gap-8
+
+            laptop:gap-16
+          "
         >
 
-          {/* GLOW */}
-          <div className="absolute h-72 w-72 rounded-full bg-pink-500/10 blur-3xl md:h-80 md:w-80" />
+          {/* LEFT SIDE */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="
+              flex flex-col
+              items-center
+            "
+          >
 
-          {/* IMAGE CARD */}
-          <div className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_0_50px_rgba(255,79,163,0.08)] backdrop-blur-xl transition duration-500 hover:shadow-[0_0_70px_rgba(255,79,163,0.16)]">
+            {/* IMAGE */}
+            <div className="relative w-full flex justify-center">
 
-            {/* TOP BADGE */}
-            <div className="absolute left-5 top-5 z-20 rounded-full border border-pink-400/20 bg-black/30 px-4 py-2 text-xs uppercase tracking-[0.25em] text-pink-300 backdrop-blur-xl">
-              Luxury Beauty Studio
+              {/* GLOW */}
+              <div className="absolute inset-0 rounded-[2rem] bg-pink-500/10 blur-3xl" />
+
+              <motion.div
+                whileHover={{
+                  y: -6,
+                  scale: 1.01,
+                }}
+                transition={{
+                  duration: 0.35,
+                }}
+                className="
+                  relative overflow-hidden
+
+                  rounded-[2rem]
+                  border border-white/10
+                  bg-white/[0.03]
+
+                  p-3
+                  backdrop-blur-xl
+
+                  shadow-[0_0_40px_rgba(255,79,163,0.08)]
+                "
+              >
+
+                <Image
+                  src="/images/sajshringar_about.png"
+                  alt="About Sajshringar"
+                  width={700}
+                  height={700}
+                  priority
+                  className="
+                    h-auto
+                    w-full
+                    object-cover
+
+                    max-w-[180px]
+
+                    sm:max-w-[230px]
+
+                    md:max-w-[280px]
+
+                    tablet:max-w-[300px]
+
+                    laptop:max-w-[460px]
+
+                    rounded-[1.5rem]
+
+                    transition duration-700
+                    hover:scale-105
+                  "
+                />
+
+                {/* OVERLAY */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-50" />
+              </motion.div>
             </div>
 
-            <Image
-              src="/images/sajshringar-logo.jpeg"
-              alt="About Sajshringar"
-              width={500}
-              height={600}
-              priority
-              className="h-auto w-full max-w-md object-cover transition duration-700 group-hover:scale-105"
+            {/* CARDS BELOW IMAGE */}
+            <div
+              className="
+                mt-5
+
+                grid w-full
+                max-w-[420px]
+
+                grid-cols-2
+                gap-4
+              "
+            >
+
+              {/* CARD 1 */}
+              <motion.div
+                whileHover={{
+                  y: -5,
+                }}
+                transition={{
+                  duration: 0.3,
+                }}
+                className="
+                  rounded-[1.5rem]
+                  border border-white/10
+                  bg-white/[0.03]
+
+                  p-4
+                  sm:p-5
+
+                  backdrop-blur-xl
+
+                  transition duration-300
+                  hover:border-pink-500/30
+                  hover:bg-pink-500/5
+                "
+              >
+
+                <h3
+                  className="
+                    text-lg
+                    font-bold
+                    gold-text
+
+                    sm:text-xl
+                    laptop:text-2xl
+                  "
+                >
+                  Bridal
+                </h3>
+
+                <p
+                  className="
+                    mt-2
+                    text-xs
+                    leading-relaxed
+                    text-white/70
+
+                    sm:text-sm
+                  "
+                >
+                  Luxury bridal makeup artistry crafted with elegance and perfection.
+                </p>
+              </motion.div>
+
+              {/* CARD 2 */}
+              <motion.div
+                whileHover={{
+                  y: -5,
+                }}
+                transition={{
+                  duration: 0.3,
+                }}
+                className="
+                  rounded-[1.5rem]
+                  border border-white/10
+                  bg-white/[0.03]
+
+                  p-4
+                  sm:p-5
+
+                  backdrop-blur-xl
+
+                  transition duration-300
+                  hover:border-pink-500/30
+                  hover:bg-pink-500/5
+                "
+              >
+
+                <h3
+                  className="
+                    text-lg
+                    font-bold
+                    gold-text
+
+                    sm:text-xl
+                    laptop:text-2xl
+                  "
+                >
+                  Training
+                </h3>
+
+                <p
+                  className="
+                    mt-2
+                    text-xs
+                    leading-relaxed
+                    text-white/70
+
+                    sm:text-sm
+                  "
+                >
+                  Professional beauty and fashion skill development academy.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* RIGHT SIDE */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 50,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="
+              w-full
+              max-w-[650px]
+
+              text-center
+
+              tablet:text-left
+            "
+          >
+
+            {/* LABEL */}
+            <p
+              className="
+                mb-4
+
+                text-[10px]
+                uppercase
+                tracking-[0.35em]
+                text-pink-400
+
+                sm:text-xs
+                tablet:text-sm
+              "
+            >
+              About Sajshringar
+            </p>
+
+            {/* TITLE */}
+            <h2
+              className="
+                heading-font
+                font-bold
+                leading-[1.02]
+
+                text-[2rem]
+
+                sm:text-[2.8rem]
+
+                md:text-[3.3rem]
+
+                laptop:text-[5rem]
+              "
+            >
+              Transforming
+              <br />
+
+              Beauty{" "}
+
+              <span className="gold-text">
+                With
+                <br />
+                Elegance
+              </span>
+            </h2>
+
+            {/* LINE */}
+            <div
+              className="
+                mt-5
+                h-[2px]
+                w-24
+                rounded-full
+                bg-gradient-to-r
+                from-pink-500
+                to-yellow-400
+
+                mx-auto
+
+                tablet:mx-0
+              "
             />
 
-            {/* OVERLAY */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70" />
+            {/* DESCRIPTION */}
+            <div
+              className="
+                mt-7
+                space-y-5
 
-            {/* BOTTOM BADGE */}
-            <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/10 bg-black/30 px-5 py-2 text-sm text-white/80 backdrop-blur-xl">
-              Bridal • Beauty • Training
-            </div>
-          </div>
-        </motion.div>
+                text-sm
+                leading-[1.9]
+                text-white/70
 
-        {/* CONTENT */}
-        <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+                sm:text-base
+                laptop:text-lg
+              "
+            >
 
-          {/* LABEL */}
-          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-pink-400">
-            About Sajshringar
-          </p>
+              <p>
+                Sajshringar by Apeksha is dedicated to enhancing beauty through
+                professional bridal makeup artistry, Aari work, jewellery
+                making, and beauty training.
+              </p>
 
-          {/* TITLE */}
-          <h2 className="heading-font mb-8 text-4xl font-bold leading-tight md:text-6xl">
-
-            Transforming Beauty
-
-            <span className="gold-text">
-              {" "}
-              With Elegance
-            </span>
-          </h2>
-
-          {/* LINE */}
-          <div className="mb-8 h-[2px] w-24 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400" />
-
-          {/* DESCRIPTION */}
-          <p className="mb-6 text-base leading-relaxed text-white/70 md:text-lg">
-            Sajshringar by Apeksha is dedicated to enhancing beauty
-            through professional bridal makeup artistry,
-            Aari work, jewellery making,
-            and beauty training.
-          </p>
-
-          <p className="text-base leading-relaxed text-white/70 md:text-lg">
-            With a passion for creativity and elegance,
-            we help every client feel confident,
-            beautiful, and unforgettable on their
-            special occasions.
-          </p>
-
-          {/* FEATURES */}
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
-
-            {/* FEATURE 1 */}
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition duration-300 hover:border-pink-500/30 hover:shadow-[0_0_25px_rgba(255,79,163,0.12)]">
-
-              <h3 className="text-2xl font-bold gold-text">
-                Bridal
-              </h3>
-
-              <p className="mt-2 text-sm leading-relaxed text-white/70">
-                Luxury bridal makeup artistry
-                crafted with elegance and perfection.
+              <p>
+                With a passion for creativity and elegance, we help every client
+                feel confident, beautiful, and unforgettable on their special
+                occasions.
               </p>
             </div>
 
-            {/* FEATURE 2 */}
-            <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition duration-300 hover:border-pink-500/30 hover:shadow-[0_0_25px_rgba(255,79,163,0.12)]">
+            {/* EXTRA FEATURE BOX */}
+            <motion.div
+              whileHover={{
+                y: -4,
+              }}
+              transition={{
+                duration: 0.3,
+              }}
+              className="
+                mt-8
 
-              <h3 className="text-2xl font-bold gold-text">
-                Training
+                rounded-[2rem]
+                border border-white/10
+                bg-white/[0.03]
+
+                p-5
+                sm:p-6
+
+                backdrop-blur-xl
+
+                transition duration-300
+                hover:border-pink-500/30
+                hover:bg-pink-500/5
+              "
+            >
+
+              <h3
+                className="
+                  text-xl
+                  font-bold
+                  gold-text
+
+                  sm:text-2xl
+                "
+              >
+                Luxury Beauty Experience
               </h3>
 
-              <p className="mt-2 text-sm leading-relaxed text-white/70">
-                Professional beauty and fashion
-                skill development academy.
-              </p>
-            </div>
-          </div>
+              <p
+                className="
+                  mt-3
+                  text-sm
+                  leading-relaxed
+                  text-white/70
 
-        </motion.div>
+                  sm:text-base
+                "
+              >
+                Every bridal transformation is carefully designed with elegance,
+                professionalism, and premium beauty artistry to create unforgettable memories.
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

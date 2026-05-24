@@ -1,25 +1,91 @@
+"use client";
+
 import Link from "next/link";
+
 import {
   Phone,
   MapPin,
   Mail,
   BadgeCheck,
   MessageCircle,
+  ChevronDown,
 } from "lucide-react";
 
+import { motion } from "framer-motion";
+
+import { useState } from "react";
+
 export default function Footer() {
+
+  const [openLinks, setOpenLinks] = useState(false);
+
   return (
-    <footer className="border-t border-white/10 bg-[#040611] pt-20 pb-10">
+    <footer
+      className="
+        relative overflow-hidden
 
-      <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+        border-t border-white/10
+        bg-[#040611]
 
-        {/* TOP GRID */}
-        <div className="grid gap-14 md:grid-cols-2 lg:grid-cols-4">
+        pt-12
+        pb-8
+
+        sm:pt-14
+
+        laptop:pt-16
+      "
+    >
+
+      {/* BACKGROUND GLOW */}
+      <div className="absolute left-0 top-0 h-[260px] w-[260px] rounded-full bg-pink-500/10 blur-3xl" />
+
+      <div className="absolute right-0 bottom-0 h-[240px] w-[240px] rounded-full bg-yellow-500/10 blur-3xl" />
+
+      <div
+        className="
+          relative z-10
+          mx-auto
+          max-w-7xl
+
+          px-4
+          sm:px-6
+          lg:px-8
+        "
+      >
+
+        {/* DESKTOP / TABLET GRID */}
+        <div
+          className="
+            hidden
+
+            tablet:grid
+            tablet:grid-cols-2
+            tablet:gap-10
+
+            laptop:grid-cols-4
+            laptop:gap-12
+          "
+        >
 
           {/* BRAND */}
-          <div>
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.6,
+            }}
+            viewport={{
+              once: true,
+            }}
+          >
 
-            <h2 className="heading-font mb-6 text-3xl font-bold gold-text">
+            <h2 className="heading-font mb-5 text-3xl font-bold gold-text">
               Sajshringar
             </h2>
 
@@ -30,77 +96,105 @@ export default function Footer() {
               and beauty training academy crafted
               with elegance and creativity.
             </p>
-          </div>
+          </motion.div>
 
           {/* QUICK LINKS */}
-          <div>
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            viewport={{
+              once: true,
+            }}
+          >
 
-            <h3 className="mb-6 text-xl font-semibold">
+            <h3 className="mb-5 text-xl font-semibold">
               Quick Links
             </h3>
 
             <ul className="space-y-4 text-white/70">
 
-              <li>
-                <Link
-                  href="/"
-                  className="transition hover:text-pink-400"
-                >
-                  Home
-                </Link>
-              </li>
+              {[
+                "Home",
+                "Services",
+                "Portfolio",
+                "Gallery",
+                "Contact",
+              ].map((item) => (
 
-              <li>
-                <Link
-                  href="/services"
-                  className="transition hover:text-pink-400"
+                <motion.li
+                  key={item}
+                  whileHover={{
+                    x: 6,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                  }}
                 >
-                  Services
-                </Link>
-              </li>
 
-              <li>
-                <Link
-                  href="/portfolio"
-                  className="transition hover:text-pink-400"
-                >
-                  Portfolio
-                </Link>
-              </li>
+                  <Link
+                    href={
+                      item === "Home"
+                        ? "/"
+                        : `/${item.toLowerCase()}`
+                    }
+                    className="
+                      transition-all duration-300
 
-              <li>
-                <Link
-                  href="/gallery"
-                  className="transition hover:text-pink-400"
-                >
-                  Gallery
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/contact"
-                  className="transition hover:text-pink-400"
-                >
-                  Contact
-                </Link>
-              </li>
+                      hover:text-pink-400
+                    "
+                  >
+                    {item}
+                  </Link>
+                </motion.li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* CONTACT */}
-          <div>
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
+            viewport={{
+              once: true,
+            }}
+          >
 
-            <h3 className="mb-6 text-xl font-semibold">
+            <h3 className="mb-5 text-xl font-semibold">
               Contact
             </h3>
 
             <div className="space-y-5 text-white/70">
 
-              {/* PHONE */}
-              <a
+              <motion.a
+                whileHover={{
+                  x: 5,
+                }}
                 href="tel:+917498645883"
-                className="flex items-start gap-3 transition hover:text-pink-400"
+                className="
+                  flex items-start gap-3
+
+                  transition-all duration-300
+
+                  hover:text-pink-400
+                "
               >
 
                 <Phone
@@ -109,12 +203,20 @@ export default function Footer() {
                 />
 
                 <p>+91 7498645883</p>
-              </a>
+              </motion.a>
 
-              {/* EMAIL */}
-              <a
+              <motion.a
+                whileHover={{
+                  x: 5,
+                }}
                 href="mailto:contact@sajshringar.com"
-                className="flex items-start gap-3 transition hover:text-pink-400"
+                className="
+                  flex items-start gap-3
+
+                  transition-all duration-300
+
+                  hover:text-pink-400
+                "
               >
 
                 <Mail
@@ -123,10 +225,14 @@ export default function Footer() {
                 />
 
                 <p>contact@sajshringar.com</p>
-              </a>
+              </motion.a>
 
-              {/* LOCATION */}
-              <div className="flex items-start gap-3">
+              <motion.div
+                whileHover={{
+                  x: 5,
+                }}
+                className="flex items-start gap-3"
+              >
 
                 <MapPin
                   size={18}
@@ -139,62 +245,536 @@ export default function Footer() {
                   Pune,
                   Maharashtra
                 </p>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
 
           {/* SOCIAL */}
-          <div>
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.9,
+            }}
+            viewport={{
+              once: true,
+            }}
+          >
 
-            <h3 className="mb-6 text-xl font-semibold">
+            <h3 className="mb-5 text-xl font-semibold">
               Follow Us
             </h3>
 
             <div className="flex flex-wrap gap-4">
 
               {/* INSTAGRAM */}
-              <a
+              <motion.a
+                whileHover={{
+                  scale: 1.05,
+                }}
+                whileTap={{
+                  scale: 0.96,
+                }}
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm transition hover:border-pink-400 hover:text-pink-400"
+                className="
+                  flex items-center gap-2
+
+                  rounded-full
+                  border border-white/10
+
+                  px-5 py-3
+
+                  text-sm
+
+                  transition-all duration-300
+
+                  hover:border-pink-400
+                  hover:text-pink-400
+                  hover:shadow-[0_0_25px_rgba(255,79,163,0.2)]
+                "
               >
 
                 <BadgeCheck size={16} />
 
                 Instagram
-              </a>
+              </motion.a>
 
               {/* WHATSAPP */}
-              <a
+              <motion.a
+                whileHover={{
+                  scale: 1.05,
+                }}
+                whileTap={{
+                  scale: 0.96,
+                }}
                 href="https://wa.me/917498645883"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-full border border-white/10 px-5 py-3 text-sm transition hover:border-pink-400 hover:text-pink-400"
+                className="
+                  flex items-center gap-2
+
+                  rounded-full
+                  border border-white/10
+
+                  px-5 py-3
+
+                  text-sm
+
+                  transition-all duration-300
+
+                  hover:border-pink-400
+                  hover:text-pink-400
+                  hover:shadow-[0_0_25px_rgba(255,79,163,0.2)]
+                "
               >
 
                 <MessageCircle size={16} />
 
                 WhatsApp
-              </a>
+              </motion.a>
             </div>
 
-            {/* BOOK CTA */}
-            <Link
-              href="/payment"
-              className="mt-8 inline-block rounded-full bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-3 text-sm font-medium text-white transition hover:scale-105 hover:shadow-[0_0_20px_rgba(255,79,163,0.35)]"
+            {/* CTA */}
+            <motion.div
+              whileHover={{
+                scale: 1.04,
+              }}
+              whileTap={{
+                scale: 0.96,
+              }}
             >
-              Book Appointment
-            </Link>
+
+              <Link
+                href="/payment"
+                className="
+                  mt-7 inline-block
+
+                  rounded-full
+
+                  bg-gradient-to-r
+                  from-pink-500
+                  to-pink-600
+
+                  px-6 py-3
+
+                  text-sm
+                  font-medium
+                  text-white
+
+                  transition-all duration-300
+
+                  hover:shadow-[0_0_25px_rgba(255,79,163,0.35)]
+                "
+              >
+                Book Appointment
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* MOBILE FOOTER */}
+        <div className="tablet:hidden">
+
+          {/* BRAND */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.6,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="text-center"
+          >
+
+            <h2 className="heading-font text-3xl font-bold gold-text">
+              Sajshringar
+            </h2>
+
+            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/70">
+              Luxury bridal makeup artistry,
+              jewellery making,
+              Aari work,
+              and beauty academy.
+            </p>
+          </motion.div>
+
+          {/* MOBILE GRID */}
+          <div className="mt-10 grid grid-cols-2 gap-4">
+
+            {/* CONTACT */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+              }}
+              viewport={{
+                once: true,
+              }}
+              className="
+                rounded-[1.5rem]
+                border border-white/10
+                bg-white/[0.03]
+
+                p-4
+
+                backdrop-blur-xl
+              "
+            >
+
+              <h3 className="mb-4 text-base font-semibold">
+                Contact
+              </h3>
+
+              <div className="space-y-4 text-xs text-white/70">
+
+                <a
+                  href="tel:+917498645883"
+                  className="flex items-start gap-2"
+                >
+
+                  <Phone
+                    size={15}
+                    className="mt-0.5 text-pink-400"
+                  />
+
+                  <span>
+                    +91 7498645883
+                  </span>
+                </a>
+
+                <a
+                  href="mailto:contact@sajshringar.com"
+                  className="flex items-start gap-2"
+                >
+
+                  <Mail
+                    size={15}
+                    className="mt-0.5 text-pink-400"
+                  />
+
+                  <span>
+                    contact@sajshringar.com
+                  </span>
+                </a>
+
+                <div className="flex items-start gap-2">
+
+                  <MapPin
+                    size={15}
+                    className="mt-0.5 text-pink-400"
+                  />
+
+                  <span>
+                    Pune,
+                    Maharashtra
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* QUICK LINKS */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.8,
+              }}
+              viewport={{
+                once: true,
+              }}
+              className="
+                rounded-[1.5rem]
+                border border-white/10
+                bg-white/[0.03]
+
+                p-4
+
+                backdrop-blur-xl
+              "
+            >
+
+              <button
+                onClick={() =>
+                  setOpenLinks(
+                    !openLinks
+                  )
+                }
+                className="
+                  flex w-full items-center justify-between
+                "
+              >
+
+                <h3 className="text-base font-semibold">
+                  Quick Links
+                </h3>
+
+                <motion.div
+                  animate={{
+                    rotate:
+                      openLinks
+                        ? 180
+                        : 0,
+                  }}
+                >
+
+                  <ChevronDown
+                    size={18}
+                  />
+                </motion.div>
+              </button>
+
+              <motion.div
+                initial={false}
+                animate={{
+                  height:
+                    openLinks
+                      ? "auto"
+                      : 0,
+                  opacity:
+                    openLinks
+                      ? 1
+                      : 0,
+                }}
+                transition={{
+                  duration: 0.35,
+                }}
+                className="overflow-hidden"
+              >
+
+                <ul className="mt-4 space-y-3 text-sm text-white/70">
+
+                  {[
+                    "Home",
+                    "Services",
+                    "Portfolio",
+                    "Gallery",
+                    "Contact",
+                  ].map((item) => (
+
+                    <li key={item}>
+
+                      <Link
+                        href={
+                          item === "Home"
+                            ? "/"
+                            : `/${item.toLowerCase()}`
+                        }
+                        className="
+                          transition-all duration-300
+
+                          hover:text-pink-400
+                        "
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </motion.div>
           </div>
+
+          {/* SOCIAL */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.9,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="
+              mt-5
+
+              rounded-[1.5rem]
+              border border-white/10
+              bg-white/[0.03]
+
+              p-5
+
+              text-center
+
+              backdrop-blur-xl
+            "
+          >
+
+            <h3 className="text-base font-semibold">
+              Follow Us
+            </h3>
+
+            <div className="mt-5 flex justify-center gap-3">
+
+              <motion.a
+                whileHover={{
+                  scale: 1.06,
+                }}
+                whileTap={{
+                  scale: 0.96,
+                }}
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  flex items-center gap-2
+
+                  rounded-full
+                  border border-white/10
+
+                  px-4 py-2
+
+                  text-xs
+
+                  transition-all duration-300
+
+                  hover:border-pink-400
+                  hover:text-pink-400
+                "
+              >
+
+                <BadgeCheck size={14} />
+
+                Instagram
+              </motion.a>
+
+              <motion.a
+                whileHover={{
+                  scale: 1.06,
+                }}
+                whileTap={{
+                  scale: 0.96,
+                }}
+                href="https://wa.me/917498645883"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  flex items-center gap-2
+
+                  rounded-full
+                  border border-white/10
+
+                  px-4 py-2
+
+                  text-xs
+
+                  transition-all duration-300
+
+                  hover:border-pink-400
+                  hover:text-pink-400
+                "
+              >
+
+                <MessageCircle size={14} />
+
+                WhatsApp
+              </motion.a>
+            </div>
+
+            {/* CTA */}
+            <motion.div
+              whileHover={{
+                scale: 1.04,
+              }}
+              whileTap={{
+                scale: 0.96,
+              }}
+            >
+
+              <Link
+                href="/payment"
+                className="
+                  mt-6 inline-block
+
+                  rounded-full
+
+                  bg-gradient-to-r
+                  from-pink-500
+                  to-pink-600
+
+                  px-6 py-3
+
+                  text-sm
+                  font-medium
+                  text-white
+
+                  transition-all duration-300
+
+                  hover:shadow-[0_0_25px_rgba(255,79,163,0.35)]
+                "
+              >
+                Book Appointment
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* BOTTOM */}
-        <div className="mt-16 border-t border-white/10 pt-8 text-center text-sm text-white/50">
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          transition={{
+            duration: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          className="
+            mt-10
+
+            border-t border-white/10
+
+            pt-6
+
+            text-center
+            text-xs
+            text-white/50
+
+            sm:text-sm
+          "
+        >
 
           © 2026 Sajshringar by Apeksha.
           All rights reserved.
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
