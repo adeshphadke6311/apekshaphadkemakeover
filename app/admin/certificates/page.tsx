@@ -10,6 +10,7 @@ import {
   addDoc,
   collection,
   getDocs,
+  Timestamp,
 } from "firebase/firestore";
 
 import {
@@ -24,7 +25,6 @@ import {
   Award,
   Download,
   Sparkles,
-  GraduationCap,
   Search,
   BadgeCheck,
   ShieldCheck,
@@ -32,6 +32,8 @@ import {
   Crown,
   CalendarDays,
   User,
+  Mail,
+  GraduationCap,
 } from "lucide-react";
 
 type Certificate = {
@@ -40,7 +42,7 @@ type Certificate = {
   studentEmail?: string;
   course?: string;
   certificateUrl?: string;
-  createdAt?: any;
+  createdAt?: Timestamp;
 };
 
 export default function CertificatesPage() {
@@ -110,7 +112,7 @@ export default function CertificatesPage() {
         );
 
         setCertificates(
-          data
+          data.reverse()
         );
 
       } catch (error) {
@@ -139,9 +141,9 @@ export default function CertificatesPage() {
       e.preventDefault();
 
       if (
-        !studentName ||
-        !course ||
-        !studentEmail
+        !studentName.trim() ||
+        !studentEmail.trim() ||
+        !course.trim()
       ) {
 
         toast.error(
@@ -184,7 +186,7 @@ export default function CertificatesPage() {
           "F"
         );
 
-        // OUTER BORDER
+        // GOLD BORDER
         pdf.setDrawColor(
           212,
           175,
@@ -204,7 +206,7 @@ export default function CertificatesPage() {
 
         // INNER BORDER
         pdf.setLineWidth(
-          0.5
+          0.6
         );
 
         pdf.rect(
@@ -214,6 +216,41 @@ export default function CertificatesPage() {
           190
         );
 
+        // CORNER DESIGNS
+        pdf.setFillColor(
+          212,
+          175,
+          55
+        );
+
+        pdf.circle(
+          20,
+          20,
+          3,
+          "F"
+        );
+
+        pdf.circle(
+          277,
+          20,
+          3,
+          "F"
+        );
+
+        pdf.circle(
+          20,
+          190,
+          3,
+          "F"
+        );
+
+        pdf.circle(
+          277,
+          190,
+          3,
+          "F"
+        );
+
         // TITLE
         pdf.setFont(
           "times",
@@ -221,9 +258,9 @@ export default function CertificatesPage() {
         );
 
         pdf.setTextColor(
-          40,
-          40,
-          40
+          30,
+          30,
+          30
         );
 
         pdf.setFontSize(
@@ -260,7 +297,7 @@ export default function CertificatesPage() {
           }
         );
 
-        // NAME
+        // STUDENT NAME
         pdf.setFont(
           "courier",
           "italic"
@@ -286,7 +323,7 @@ export default function CertificatesPage() {
           }
         );
 
-        // COURSE TEXT
+        // COURSE LABEL
         pdf.setFont(
           "times",
           "normal"
@@ -294,6 +331,12 @@ export default function CertificatesPage() {
 
         pdf.setFontSize(
           14
+        );
+
+        pdf.setTextColor(
+          50,
+          50,
+          50
         );
 
         pdf.text(
@@ -376,6 +419,12 @@ export default function CertificatesPage() {
           11
         );
 
+        pdf.setTextColor(
+          80,
+          80,
+          80
+        );
+
         pdf.text(
           today,
           65,
@@ -414,7 +463,7 @@ export default function CertificatesPage() {
           }
         );
 
-        // ACADEMY NAME
+        // FOOTER
         pdf.setFont(
           "times",
           "bold"
@@ -440,13 +489,12 @@ export default function CertificatesPage() {
           }
         );
 
-        // PDF BLOB
+        // PDF URL
         const pdfBlob =
           pdf.output(
             "blob"
           );
 
-        // PDF URL
         const pdfUrl =
           URL.createObjectURL(
             pdfBlob
@@ -488,14 +536,8 @@ export default function CertificatesPage() {
         );
 
         // RESET
-        setStudentName(
-          ""
-        );
-
-        setStudentEmail(
-          ""
-        );
-
+        setStudentName("");
+        setStudentEmail("");
         setCourse("");
 
         fetchCertificates();
@@ -514,7 +556,7 @@ export default function CertificatesPage() {
       }
     };
 
-  // FILTER
+  // FILTERED CERTIFICATES
   const filteredCertificates =
     useMemo(() => {
 
@@ -532,7 +574,7 @@ export default function CertificatesPage() {
             ) ||
 
           (
-            certificate.course ||
+            certificate.studentEmail ||
             ""
           )
             .toLowerCase()
@@ -541,7 +583,7 @@ export default function CertificatesPage() {
             ) ||
 
           (
-            certificate.studentEmail ||
+            certificate.course ||
             ""
           )
             .toLowerCase()
@@ -586,9 +628,7 @@ export default function CertificatesPage() {
 
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">
 
-                Generate premium academy certificates.
-                Certificates automatically appear
-                in student dashboard.
+                Generate luxury academy certificates with premium styling and instant student access.
               </p>
             </div>
 
@@ -612,7 +652,7 @@ export default function CertificatesPage() {
 
                   <p className="text-white/60">
 
-                    Issued Certificates
+                    Total Certificates
                   </p>
                 </div>
               </div>
@@ -628,12 +668,12 @@ export default function CertificatesPage() {
           className="mt-10 rounded-[2.5rem] border border-white/10 bg-white/5 p-8"
         >
 
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3">
 
             {/* NAME */}
             <div>
 
-              <label className="mb-3 block text-sm font-medium text-white/70">
+              <label className="mb-3 block text-sm text-white/70">
 
                 Student Name
               </label>
@@ -662,38 +702,43 @@ export default function CertificatesPage() {
             {/* EMAIL */}
             <div>
 
-              <label className="mb-3 block text-sm font-medium text-white/70">
+              <label className="mb-3 block text-sm text-white/70">
 
                 Student Email
               </label>
 
-              <input
-                type="email"
-                required
-                value={
-                  studentEmail
-                }
-                onChange={(e) =>
-                  setStudentEmail(
-                    e.target.value
-                  )
-                }
-                placeholder="Enter student email"
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 outline-none transition focus:border-pink-500/40"
-              />
+              <div className="relative">
+
+                <Mail className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-pink-400" />
+
+                <input
+                  type="email"
+                  required
+                  value={
+                    studentEmail
+                  }
+                  onChange={(e) =>
+                    setStudentEmail(
+                      e.target.value
+                    )
+                  }
+                  placeholder="Enter email"
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-14 pr-5 outline-none transition focus:border-pink-500/40"
+                />
+              </div>
             </div>
 
             {/* COURSE */}
             <div>
 
-              <label className="mb-3 block text-sm font-medium text-white/70">
+              <label className="mb-3 block text-sm text-white/70">
 
                 Course Name
               </label>
 
               <div className="relative">
 
-                <Sparkles className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-pink-400" />
+                <GraduationCap className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-pink-400" />
 
                 <input
                   type="text"
@@ -704,7 +749,7 @@ export default function CertificatesPage() {
                       e.target.value
                     )
                   }
-                  placeholder="Enter course"
+                  placeholder="Enter course name"
                   className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-14 pr-5 outline-none transition focus:border-pink-500/40"
                 />
               </div>
@@ -715,13 +760,13 @@ export default function CertificatesPage() {
           <button
             type="submit"
             disabled={loading}
-            className="mt-10 flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-5 text-lg font-semibold transition hover:scale-[1.01] hover:shadow-[0_0_35px_rgba(255,79,163,0.35)]"
+            className="mt-10 flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-pink-500 to-pink-600 px-6 py-5 text-lg font-semibold transition hover:scale-[1.01] hover:shadow-[0_0_35px_rgba(255,79,163,0.35)] disabled:cursor-not-allowed disabled:opacity-70"
           >
 
             <FileBadge size={22} />
 
             {loading
-              ? "Generating..."
+              ? "Generating Certificate..."
               : "Generate Premium Certificate"}
           </button>
         </form>
@@ -758,7 +803,7 @@ export default function CertificatesPage() {
 
               <p className="mt-1 text-sm text-white/50">
 
-                Visible in student dashboard
+                Automatically visible in student dashboard
               </p>
             </div>
 
@@ -770,10 +815,9 @@ export default function CertificatesPage() {
             </span>
           </div>
 
-          {filteredCertificates.length ===
-          0 ? (
+          {filteredCertificates.length === 0 ? (
 
-            <div className="p-12 text-center text-white/60">
+            <div className="p-14 text-center text-white/60">
 
               No Certificates Found
             </div>
@@ -819,7 +863,7 @@ export default function CertificatesPage() {
                     </p>
 
                     {/* COURSE */}
-                    <p className="mt-4 text-pink-400">
+                    <p className="mt-4 text-pink-400 font-medium">
 
                       {
                         certificate.course ||
@@ -835,7 +879,7 @@ export default function CertificatesPage() {
                       Certificate Issued
                     </div>
 
-                    {/* VERIFIED */}
+                    {/* BADGES */}
                     <div className="mt-5 flex flex-wrap gap-3">
 
                       <div className="inline-flex items-center gap-2 rounded-full bg-green-500/10 px-4 py-2 text-sm text-green-400">
