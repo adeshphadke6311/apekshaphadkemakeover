@@ -3,6 +3,27 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
+const aboutImages = [
+  {
+    image: "/about/bridal_makeup.png",
+    title: "Bridal Makeup",
+  },
+  {
+    image: "/about/aariwork.png",
+    title: "Aari Work",
+  },
+  {
+    image: "/about/hairstyle.png",
+    title: "Hairstyle",
+  },
+];
+
 export default function About() {
   return (
     <section
@@ -10,47 +31,38 @@ export default function About() {
       className="
         relative overflow-hidden
         bg-[#050816]
-
         py-10
-
         sm:py-14
-
-        tablet:py-16
-
         laptop:py-16
       "
     >
       {/* BACKGROUND GLOW */}
-      <div className="absolute left-0 top-0 h-[280px] w-[280px] rounded-full bg-pink-500/10 blur-3xl" />
+      <div className="absolute left-0 top-0 h-[260px] w-[260px] rounded-full bg-pink-500/10 blur-3xl" />
 
-      <div className="absolute bottom-0 right-0 h-[320px] w-[320px] rounded-full bg-yellow-500/10 blur-3xl" />
+      <div className="absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full bg-yellow-500/10 blur-3xl" />
 
       <div
         className="
           relative z-10
           mx-auto
           max-w-7xl
-
           px-4
           sm:px-6
           lg:px-8
         "
       >
-
         {/* MAIN GRID */}
         <div
           className="
             grid items-center
-
             gap-10
 
             tablet:grid-cols-2
             tablet:gap-8
 
-            laptop:gap-16
+            laptop:gap-14
           "
         >
-
           {/* LEFT SIDE */}
           <motion.div
             initial={{
@@ -72,21 +84,25 @@ export default function About() {
               items-center
             "
           >
+            {/* SWIPER IMAGE SECTION */}
+            <div
+              className="
+                relative
+                w-full
 
-            {/* IMAGE */}
-            <div className="relative w-full flex justify-center">
+                max-w-[320px]
 
+                sm:max-w-[420px]
+
+                md:max-w-[480px]
+
+                laptop:max-w-[540px]
+              "
+            >
               {/* GLOW */}
               <div className="absolute inset-0 rounded-[2rem] bg-pink-500/10 blur-3xl" />
 
-              <motion.div
-                whileHover={{
-                  y: -6,
-                  scale: 1.01,
-                }}
-                transition={{
-                  duration: 0.35,
-                }}
+              <div
                 className="
                   relative overflow-hidden
 
@@ -94,74 +110,95 @@ export default function About() {
                   border border-white/10
                   bg-white/[0.03]
 
-                  p-3
+                  p-2.5
+
                   backdrop-blur-xl
 
-                  shadow-[0_0_40px_rgba(255,79,163,0.08)]
+                  shadow-[0_0_35px_rgba(255,79,163,0.08)]
                 "
               >
+                <Swiper
+                  modules={[Autoplay, Pagination]}
+                  slidesPerView={1}
+                  loop={true}
+                  speed={900}
+                  autoplay={{
+                    delay: 3200,
+                    disableOnInteraction: false,
+                  }}
+                  pagination={{
+                    clickable: true,
+                  }}
+                  className="aboutSwiper rounded-[1.5rem]"
+                >
+                  {aboutImages.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        className="
+                          relative
 
-                <Image
-                  src="/images/sajshringar_about.png"
-                  alt="About Sajshringar"
-                  width={700}
-                  height={700}
-                  priority
-                  className="
-                    h-auto
-                    w-full
-                    object-cover
+                          aspect-[16/10]
 
-                    max-w-[180px]
+                          w-full
 
-                    sm:max-w-[230px]
+                          overflow-hidden
+                          rounded-[1.5rem]
 
-                    md:max-w-[280px]
+                          bg-[#0b1020]
 
-                    tablet:max-w-[300px]
+                          flex
+                          items-center
+                          justify-center
+                        "
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          priority
+                          className="
+                            object-contain
 
-                    laptop:max-w-[460px]
+                            transition duration-700
+                            hover:scale-[1.02]
+                          "
+                        />
 
-                    rounded-[1.5rem]
-
-                    transition duration-700
-                    hover:scale-105
-                  "
-                />
-
-                {/* OVERLAY */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-50" />
-              </motion.div>
+                        {/* DARK OVERLAY */}
+                        <div className="absolute inset-0 bg-black/10" />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </div>
 
-            {/* CARDS BELOW IMAGE */}
+            {/* CARDS */}
             <div
               className="
                 mt-5
 
                 grid w-full
-                max-w-[420px]
+                max-w-[540px]
 
                 grid-cols-2
                 gap-4
               "
             >
-
               {/* CARD 1 */}
               <motion.div
                 whileHover={{
-                  y: -5,
+                  y: -4,
                 }}
                 transition={{
                   duration: 0.3,
                 }}
                 className="
-                  rounded-[1.5rem]
+                  rounded-[1.4rem]
                   border border-white/10
                   bg-white/[0.03]
 
                   p-4
-                  sm:p-5
 
                   backdrop-blur-xl
 
@@ -170,7 +207,6 @@ export default function About() {
                   hover:bg-pink-500/5
                 "
               >
-
                 <h3
                   className="
                     text-lg
@@ -178,7 +214,6 @@ export default function About() {
                     gold-text
 
                     sm:text-xl
-                    laptop:text-2xl
                   "
                 >
                   Bridal
@@ -194,25 +229,24 @@ export default function About() {
                     sm:text-sm
                   "
                 >
-                  Luxury bridal makeup artistry crafted with elegance and perfection.
+                  Elegant bridal artistry crafted with perfection and beauty.
                 </p>
               </motion.div>
 
               {/* CARD 2 */}
               <motion.div
                 whileHover={{
-                  y: -5,
+                  y: -4,
                 }}
                 transition={{
                   duration: 0.3,
                 }}
                 className="
-                  rounded-[1.5rem]
+                  rounded-[1.4rem]
                   border border-white/10
                   bg-white/[0.03]
 
                   p-4
-                  sm:p-5
 
                   backdrop-blur-xl
 
@@ -221,7 +255,6 @@ export default function About() {
                   hover:bg-pink-500/5
                 "
               >
-
                 <h3
                   className="
                     text-lg
@@ -229,7 +262,6 @@ export default function About() {
                     gold-text
 
                     sm:text-xl
-                    laptop:text-2xl
                   "
                 >
                   Training
@@ -245,7 +277,7 @@ export default function About() {
                     sm:text-sm
                   "
                 >
-                  Professional beauty and fashion skill development academy.
+                  Professional beauty training with creative skill development.
                 </p>
               </motion.div>
             </div>
@@ -269,18 +301,16 @@ export default function About() {
             }}
             className="
               w-full
-              max-w-[650px]
+              max-w-[620px]
 
               text-center
-
               tablet:text-left
             "
           >
-
             {/* LABEL */}
             <p
               className="
-                mb-4
+                mb-3
 
                 text-[10px]
                 uppercase
@@ -288,7 +318,6 @@ export default function About() {
                 text-pink-400
 
                 sm:text-xs
-                tablet:text-sm
               "
             >
               About Sajshringar
@@ -299,15 +328,15 @@ export default function About() {
               className="
                 heading-font
                 font-bold
-                leading-[1.02]
+                leading-[1.05]
 
                 text-[2rem]
 
-                sm:text-[2.8rem]
+                sm:text-[2.7rem]
 
-                md:text-[3.3rem]
+                md:text-[3.2rem]
 
-                laptop:text-[5rem]
+                laptop:text-[4rem]
               "
             >
               Transforming
@@ -325,16 +354,15 @@ export default function About() {
             {/* LINE */}
             <div
               className="
-                mt-5
+                mt-4
                 h-[2px]
-                w-24
+                w-20
                 rounded-full
                 bg-gradient-to-r
                 from-pink-500
                 to-yellow-400
 
                 mx-auto
-
                 tablet:mx-0
               "
             />
@@ -342,32 +370,31 @@ export default function About() {
             {/* DESCRIPTION */}
             <div
               className="
-                mt-7
-                space-y-5
+                mt-6
+                space-y-4
 
                 text-sm
-                leading-[1.9]
+                leading-[1.8]
                 text-white/70
 
-                sm:text-base
-                laptop:text-lg
+                sm:text-[15px]
+                laptop:text-base
               "
             >
-
               <p>
-                Sajshringar by Apeksha is dedicated to enhancing beauty through
-                professional bridal makeup artistry, Aari work, jewellery
-                making, and beauty training.
+                Sajshringar by Apeksha is dedicated to enhancing beauty
+                through bridal makeup artistry, Aari work, jewellery making,
+                and beauty training.
               </p>
 
               <p>
-                With a passion for creativity and elegance, we help every client
-                feel confident, beautiful, and unforgettable on their special
-                occasions.
+                With creativity, elegance, and professionalism, we help every
+                client feel confident, beautiful, and unforgettable on their
+                special occasions.
               </p>
             </div>
 
-            {/* EXTRA FEATURE BOX */}
+            {/* FEATURE BOX */}
             <motion.div
               whileHover={{
                 y: -4,
@@ -376,14 +403,13 @@ export default function About() {
                 duration: 0.3,
               }}
               className="
-                mt-8
+                mt-7
 
-                rounded-[2rem]
+                rounded-[1.8rem]
                 border border-white/10
                 bg-white/[0.03]
 
                 p-5
-                sm:p-6
 
                 backdrop-blur-xl
 
@@ -392,14 +418,13 @@ export default function About() {
                 hover:bg-pink-500/5
               "
             >
-
               <h3
                 className="
-                  text-xl
+                  text-lg
                   font-bold
                   gold-text
 
-                  sm:text-2xl
+                  sm:text-xl
                 "
               >
                 Luxury Beauty Experience
@@ -411,12 +436,11 @@ export default function About() {
                   text-sm
                   leading-relaxed
                   text-white/70
-
-                  sm:text-base
                 "
               >
-                Every bridal transformation is carefully designed with elegance,
-                professionalism, and premium beauty artistry to create unforgettable memories.
+                Every bridal transformation is designed with elegance,
+                premium artistry, and professionalism to create unforgettable
+                memories.
               </p>
             </motion.div>
           </motion.div>
