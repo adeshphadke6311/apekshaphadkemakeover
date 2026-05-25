@@ -2,9 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 
-import {
-  Play,
-} from "lucide-react";
+import { Play } from "lucide-react";
 
 import {
   motion,
@@ -16,6 +14,8 @@ import {
 /* -------------------------------------------------------------------------- */
 
 const portfolioItems = [
+  /* -------------------------------- IMAGES -------------------------------- */
+
   {
     type: "image",
     category: "Bridal",
@@ -24,37 +24,9 @@ const portfolioItems = [
   },
 
   {
-    type: "video",
-    category: "Bridal",
-    src: "/videos/bridal.mp4",
-    orientation: "horizontal",
-  },
-
-  {
     type: "image",
     category: "Bridal",
     src: "/gallery/bridal2.jpg",
-    orientation: "horizontal",
-  },
-
-  {
-    type: "video",
-    category: "Bridal",
-    src: "/videos/bridal2.mp4",
-    orientation: "vertical",
-  },
-
-  {
-    type: "image",
-    category: "Bridal",
-    src: "/gallery/bridal8.jpg",
-    orientation: "vertical",
-  },
-
-  {
-    type: "video",
-    category: "Bridal",
-    src: "/videos/bridal3.mp4",
     orientation: "horizontal",
   },
 
@@ -67,43 +39,8 @@ const portfolioItems = [
 
   {
     type: "image",
-    category: "Hairstyle",
-    src: "/gallery/hairstyle1.jpg",
-    orientation: "vertical",
-  },
-
-  {
-    type: "video",
-    category: "Training",
-    src: "/videos/training1.mp4",
-    orientation: "horizontal",
-  },
-
-  {
-    type: "image",
     category: "Bridal",
     src: "/gallery/bridal4.jpg",
-    orientation: "vertical",
-  },
-
-  {
-    type: "video",
-    category: "Aari Work",
-    src: "/videos/aari work1.mp4",
-    orientation: "vertical",
-  },
-
-  {
-    type: "image",
-    category: "Hairstyle",
-    src: "/gallery/hairstyle2.jpg",
-    orientation: "horizontal",
-  },
-
-  {
-    type: "video",
-    category: "Training",
-    src: "/videos/training2.mp4",
     orientation: "vertical",
   },
 
@@ -115,16 +52,118 @@ const portfolioItems = [
   },
 
   {
-    type: "video",
-    category: "Aari Work",
-    src: "/videos/aari work2.mp4",
-    orientation: "horizontal",
+    type: "image",
+    category: "Bridal",
+    src: "/gallery/bridal6.jpg",
+    orientation: "vertical",
   },
 
   {
     type: "image",
     category: "Bridal",
-    src: "/gallery/bridal6.jpg",
+    src: "/gallery/bridal8.jpg",
+    orientation: "vertical",
+  },
+
+  {
+    type: "image",
+    category: "Bridal",
+    src: "/gallery/bridal9.jpg",
+    orientation: "horizontal",
+  },
+
+  /* ------------------------------ HAIRSTYLE ------------------------------ */
+
+  {
+    type: "image",
+    category: "Hairstyle",
+    src: "/gallery/hairstyle1.jpg",
+    orientation: "vertical",
+  },
+
+  {
+    type: "image",
+    category: "Hairstyle",
+    src: "/gallery/hairstyle2.jpg",
+    orientation: "horizontal",
+  },
+
+  {
+    type: "image",
+    category: "Hairstyle",
+    src: "/gallery/hairstyle3.jpg",
+    orientation: "vertical",
+  },
+
+  {
+    type: "image",
+    category: "Hairstyle",
+    src: "/gallery/hairstyle4.jpg",
+    orientation: "horizontal",
+  },
+
+  {
+    type: "image",
+    category: "Hairstyle",
+    src: "/gallery/hairstyle5.jpg",
+    orientation: "vertical",
+  },
+
+  /* -------------------------------- VIDEOS -------------------------------- */
+
+  {
+    type: "video",
+    category: "Bridal",
+    src: "/videos/bridal.mp4",
+    orientation: "horizontal",
+  },
+
+  {
+    type: "video",
+    category: "Bridal",
+    src: "/videos/bridal2.mp4",
+    orientation: "vertical",
+  },
+
+  {
+    type: "video",
+    category: "Bridal",
+    src: "/videos/bridal3.mp4",
+    orientation: "horizontal",
+  },
+
+  {
+    type: "video",
+    category: "Bridal",
+    src: "/videos/bridal4.mp4",
+    orientation: "vertical",
+  },
+
+  {
+    type: "video",
+    category: "Hairstyle",
+    src: "/videos/hairstyle.mp4",
+    orientation: "vertical",
+  },
+
+  {
+    type: "video",
+    category: "Hairstyle",
+    src: "/videos/hairstyle2.mp4",
+    orientation: "horizontal",
+  },
+
+  {
+    type: "video",
+    category: "Training",
+    src: "/videos/training1.mp4",
+    orientation: "horizontal",
+  },
+
+  {
+    type: "video",
+    category: "Training",
+    src: "/videos/training2.mp4",
     orientation: "vertical",
   },
 
@@ -136,9 +175,23 @@ const portfolioItems = [
   },
 
   {
-    type: "image",
-    category: "Hairstyle",
-    src: "/gallery/hairstyle3.jpg",
+    type: "video",
+    category: "Training",
+    src: "/videos/training4.mp4",
+    orientation: "horizontal",
+  },
+
+  {
+    type: "video",
+    category: "Aari Work",
+    src: "/videos/aari work1.mp4",
+    orientation: "vertical",
+  },
+
+  {
+    type: "video",
+    category: "Aari Work",
+    src: "/videos/aari work2.mp4",
     orientation: "horizontal",
   },
 
@@ -146,21 +199,7 @@ const portfolioItems = [
     type: "video",
     category: "Aari Work",
     src: "/videos/aari work3.mp4",
-    orientation: "horizontal",
-  },
-
-  {
-    type: "image",
-    category: "Bridal",
-    src: "/gallery/bridal7.jpg",
-    orientation: "horizontal",
-  },
-
-  {
-    type: "video",
-    category: "Training",
-    src: "/videos/training4.mp4",
-    orientation: "horizontal",
+    orientation: "vertical",
   },
 ];
 
@@ -245,8 +284,7 @@ export default function PortfolioPage() {
                       : "border border-white/10 bg-white/5 text-white/70 hover:bg-white/10"
                   }`}
                 >
-                  {category} (
-                  {count})
+                  {category} ({count})
                 </button>
               );
             }
@@ -273,7 +311,7 @@ export default function PortfolioPage() {
                   layout
                   initial={{
                     opacity: 0,
-                    y: 30,
+                    y: 20,
                   }}
                   animate={{
                     opacity: 1,
@@ -285,9 +323,9 @@ export default function PortfolioPage() {
                   transition={{
                     duration: 0.4,
                     delay:
-                      index * 0.03,
+                      index * 0.02,
                   }}
-                  className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-black/40 shadow-[0_0_30px_rgba(255,79,163,0.06)] break-inside-avoid"
+                  className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-black/30 shadow-[0_0_30px_rgba(255,79,163,0.06)] break-inside-avoid"
                 >
 
                   {/* IMAGE */}
@@ -352,7 +390,7 @@ function VideoCard({
   const isPaused =
     pausedVideo === item.src;
 
-  /* ---------------------------- HOVER PLAY ---------------------------- */
+  /* ----------------------------- HOVER PLAY ----------------------------- */
 
   const handleHover =
     async () => {
@@ -393,7 +431,7 @@ function VideoCard({
       }
     };
 
-  /* ---------------------------- HOVER LEAVE ---------------------------- */
+  /* ----------------------------- HOVER LEAVE ----------------------------- */
 
   const handleLeave =
     () => {
@@ -475,8 +513,6 @@ function VideoCard({
       }
     >
 
-      {/* VIDEO */}
-
       <video
         ref={videoRef}
         loop
@@ -503,12 +539,12 @@ function VideoCard({
 
       <div className="pointer-events-none absolute inset-0 bg-black/10 transition duration-300 group-hover:bg-black/20" />
 
-      {/* SMALL MINIMAL VIDEO ICON */}
+      {/* SMALL WHITE VIDEO ICON */}
 
       <div className="pointer-events-none absolute right-4 top-4 z-20">
 
         <Play
-          className="h-4 w-4 text-white drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]"
+          className="h-3.5 w-3.5 text-white drop-shadow-[0_0_10px_rgba(0,0,0,0.9)]"
           fill="white"
         />
       </div>
