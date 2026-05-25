@@ -130,6 +130,9 @@ export default function Footer() {
                 "Contact",
               ].map((item) => (
 
+
+
+
                 <motion.li
                   key={item}
                   whileHover={{
@@ -576,7 +579,7 @@ export default function Footer() {
                     "Home",
                     "Services",
                     "Portfolio",
-                    "Gallery",
+                    // "Gallery",
                     "Contact",
                   ].map((item) => (
 
