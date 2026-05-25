@@ -210,9 +210,9 @@ const portfolioItems = [
 const categories = [
   "All",
   "Bridal",
+  "Hairstyle",
   "Training",
   "Aari Work",
-  "Hairstyle",
 ];
 
 /* -------------------------------------------------------------------------- */
