@@ -2,11 +2,7 @@
 
 import { useMemo, useRef, useState } from "react";
 
-import {
-  Play,
-  Pause,
-  Clock3,
-} from "lucide-react";
+import { Clock3 } from "lucide-react";
 
 import {
   motion,
@@ -218,8 +214,11 @@ export default function PortfolioPage() {
     seconds: number
   ) => {
 
-    if (!seconds)
-      return "0:00";
+    if (
+      !seconds ||
+      isNaN(seconds)
+    )
+      return "";
 
     const mins =
       Math.floor(
@@ -384,7 +383,7 @@ function VideoCard({
   const [
     duration,
     setDuration,
-  ] = useState("0:00");
+  ] = useState("");
 
   const isPlaying =
     activeVideo === item.src;
@@ -400,7 +399,7 @@ function VideoCard({
       if (!currentVideo)
         return;
 
-      /* -------- PAUSE OTHER VIDEOS -------- */
+      /* ---- PAUSE OTHER VIDEOS ---- */
 
       document
         .querySelectorAll("video")
@@ -416,7 +415,7 @@ function VideoCard({
           }
         });
 
-      /* -------- SAME VIDEO -------- */
+      /* ---- TOGGLE CURRENT ---- */
 
       if (isPlaying) {
 
@@ -448,7 +447,7 @@ function VideoCard({
       }
     };
 
-  /* ---------------- HOVER PLAY ---------------- */
+  /* ---------------- HOVER PREVIEW ---------------- */
 
   const handleHover =
     async () => {
@@ -519,7 +518,7 @@ function VideoCard({
         playsInline
         preload="metadata"
         controls={false}
-        className={`w-full object-cover transition duration-500 group-hover:scale-[1.03]
+        className={`w-full cursor-pointer object-cover transition duration-500 group-hover:scale-[1.03]
         ${
           item.orientation ===
           "vertical"
@@ -528,13 +527,25 @@ function VideoCard({
         }`}
         onLoadedMetadata={(e) => {
 
-          setDuration(
-            formatTime(
-              e.currentTarget
-                .duration
+          const realDuration =
+            e.currentTarget
+              .duration;
+
+          if (
+            realDuration &&
+            !isNaN(
+              realDuration
             )
-          );
+          ) {
+
+            setDuration(
+              formatTime(
+                realDuration
+              )
+            );
+          }
         }}
+        onClick={toggleVideo}
       >
 
         <source
@@ -545,43 +556,19 @@ function VideoCard({
 
       {/* OVERLAY */}
 
-      <div className="pointer-events-none absolute inset-0 bg-black/10 group-hover:bg-black/20" />
-
-      {/* PLAY / PAUSE BUTTON */}
-
-      <button
-        onClick={
-          toggleVideo
-        }
-        className="absolute left-1/2 top-1/2 z-20 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-black/50 sm:h-16 sm:w-16"
-      >
-
-        {isPlaying ? (
-
-          <Pause
-            className="text-white"
-            size={24}
-            fill="white"
-          />
-
-        ) : (
-
-          <Play
-            className="ml-[2px] text-white"
-            size={24}
-            fill="white"
-          />
-        )}
-      </button>
+      <div className="pointer-events-none absolute inset-0 bg-black/10 group-hover:bg-black/20 transition duration-300" />
 
       {/* DURATION */}
 
-      <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full bg-black/60 px-4 py-2 text-sm font-medium backdrop-blur-md">
+      {duration && (
 
-        <Clock3 className="h-4 w-4 text-pink-400" />
+        <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full bg-black/60 px-4 py-2 text-sm font-medium backdrop-blur-md">
 
-        {duration}
-      </div>
+          <Clock3 className="h-4 w-4 text-pink-400" />
+
+          {duration}
+        </div>
+      )}
     </div>
   );
 }
