@@ -5,14 +5,34 @@ import Link from "next/link";
 
 import { motion } from "framer-motion";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import {
+  Autoplay,
+  Pagination,
+  EffectFade,
+} from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+
+const heroImages = [
+  "/images/sajshringar-logo.jpeg",
+  "/images/sajshringar_hero1.png",
+  "/images/sajshringar_hero2.png",
+  "/images/sajshringar_hero3.png",
+];
+
 export default function Hero() {
   return (
     <section
       id="home"
       className="relative overflow-hidden bg-[#050816]"
     >
+
       {/* BACKGROUND GLOW */}
-      <div className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full bg-pink-500/10 blur-3xl" />
+      <div className="absolute left-0 top-0 h-[450px] w-[450px] rounded-full bg-pink-500/10 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
@@ -21,19 +41,20 @@ export default function Hero() {
           className="
             grid items-center
 
-            gap-10
-            pt-28
-            pb-8
+            gap-14
 
-            tablet:grid-cols-[1.05fr_0.95fr]
-            tablet:gap-8
+            pt-20
+            pb-14
+
+            sm:pt-24
+
+            tablet:grid-cols-[1fr_0.9fr]
+            tablet:gap-10
             tablet:pt-20
-            tablet:pb-6
 
-            laptop:grid-cols-2
+            laptop:grid-cols-[1.05fr_0.95fr]
             laptop:gap-16
-            laptop:pt-32
-            laptop:pb-10
+            laptop:pt-24
           "
         >
 
@@ -41,7 +62,7 @@ export default function Hero() {
           <motion.div
             initial={{
               opacity: 0,
-              x: -60,
+              x: -50,
             }}
             animate={{
               opacity: 1,
@@ -49,9 +70,8 @@ export default function Hero() {
             }}
             transition={{
               duration: 0.9,
-              ease: "easeOut",
             }}
-            className="max-w-[680px]"
+            className="max-w-[650px]"
           >
 
             {/* TAG */}
@@ -66,10 +86,9 @@ export default function Hero() {
               }}
               transition={{
                 delay: 0.2,
-                duration: 0.6,
               }}
               className="
-                mb-5 uppercase tracking-[0.35em]
+                mb-5 uppercase tracking-[0.32em]
                 text-pink-400
 
                 text-[10px]
@@ -84,7 +103,7 @@ export default function Hero() {
             <motion.h1
               initial={{
                 opacity: 0,
-                y: 30,
+                y: 25,
               }}
               animate={{
                 opacity: 1,
@@ -95,11 +114,13 @@ export default function Hero() {
                 duration: 0.8,
               }}
               className="
-                heading-font font-bold leading-[1.02]
+                heading-font
+                font-bold
+                leading-[1.02]
 
                 text-[clamp(2.8rem,5vw,5.8rem)]
 
-                max-w-[14ch]
+                max-w-[13ch]
               "
             >
               Elevate Your Beauty With{" "}
@@ -113,38 +134,44 @@ export default function Hero() {
             <motion.div
               initial={{
                 width: 0,
-                opacity: 0,
               }}
               animate={{
-                width: 96,
-                opacity: 1,
+                width: 110,
               }}
               transition={{
-                delay: 0.6,
-                duration: 0.7,
+                delay: 0.5,
+                duration: 0.8,
               }}
-              className="mt-6 h-[2px] rounded-full bg-gradient-to-r from-pink-500 to-yellow-400"
+              className="
+                mt-6 h-[2px]
+                rounded-full
+                bg-gradient-to-r
+                from-pink-500
+                to-yellow-400
+              "
             />
 
             {/* DESCRIPTION */}
             <motion.p
               initial={{
                 opacity: 0,
-                y: 20,
+                y: 18,
               }}
               animate={{
                 opacity: 1,
                 y: 0,
               }}
               transition={{
-                delay: 0.5,
-                duration: 0.7,
+                delay: 0.55,
               }}
               className="
-                mt-8 max-w-[620px]
-                leading-relaxed text-white/75
+                mt-8
+                max-w-[620px]
 
                 text-sm
+                leading-relaxed
+                text-white/75
+
                 sm:text-base
                 tablet:text-[17px]
               "
@@ -159,7 +186,7 @@ export default function Hero() {
             <motion.div
               initial={{
                 opacity: 0,
-                y: 20,
+                y: 18,
               }}
               animate={{
                 opacity: 1,
@@ -167,24 +194,30 @@ export default function Hero() {
               }}
               transition={{
                 delay: 0.7,
-                duration: 0.7,
               }}
               className="
                 mt-10 flex flex-wrap items-center gap-4
               "
             >
+
               <Link
                 href="/payment"
                 className="
-                  rounded-full bg-gradient-to-r
-                  from-pink-500 to-pink-600
+                  rounded-full
+                  bg-gradient-to-r
+                  from-pink-500
+                  to-pink-600
 
                   px-7 py-4
-                  text-sm font-semibold text-white
+
+                  text-sm
+                  font-semibold
+                  text-white
 
                   transition-all duration-300
+
                   hover:scale-105
-                  hover:shadow-[0_0_30px_rgba(255,79,163,0.35)]
+                  hover:shadow-[0_0_28px_rgba(255,79,163,0.35)]
                 "
               >
                 Book Appointment
@@ -193,14 +226,20 @@ export default function Hero() {
               <Link
                 href="/gallery"
                 className="
-                  rounded-full border border-white/10
-                  bg-white/5 backdrop-blur-xl
+                  rounded-full
+                  border border-white/10
+                  bg-white/[0.04]
 
                   px-7 py-4
-                  text-sm font-semibold text-white
 
+                  text-sm
+                  font-semibold
+                  text-white
+
+                  backdrop-blur-xl
                   transition-all duration-300
-                  hover:border-pink-400/40
+
+                  hover:border-pink-500/40
                   hover:bg-pink-500/10
                 "
               >
@@ -209,11 +248,11 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT SIDE */}
+          {/* RIGHT IMAGE SECTION */}
           <motion.div
             initial={{
               opacity: 0,
-              x: 60,
+              x: 50,
               scale: 0.95,
             }}
             animate={{
@@ -223,211 +262,169 @@ export default function Hero() {
             }}
             transition={{
               duration: 1,
-              ease: "easeOut",
             }}
             className="
               flex flex-col items-center
-
-              tablet:items-center
             "
           >
 
-            {/* IMAGE CARD */}
-            <motion.div
-              whileHover={{
-                scale: 1.02,
-              }}
-              transition={{
-                duration: 0.3,
-              }}
-              className="relative"
+            {/* IMAGE WRAPPER */}
+            <div
+              className="
+                relative w-full
+
+                max-w-[220px]
+
+                sm:max-w-[280px]
+
+                tablet:max-w-[320px]
+
+                laptop:max-w-[420px]
+              "
             >
 
               {/* GLOW */}
-              <div className="absolute inset-0 rounded-[2rem] bg-pink-500/20 blur-3xl" />
+              <div className="absolute inset-0 rounded-[2rem] bg-pink-500/10 blur-3xl" />
 
               {/* CARD */}
               <div
                 className="
                   relative overflow-hidden
+
                   rounded-[2rem]
-
                   border border-white/10
-                  bg-white/[0.03]
-                  backdrop-blur-xl
 
-                  p-4
+                  bg-white/[0.03]
+
+                  p-3
+
+                  shadow-[0_0_40px_rgba(255,79,163,0.08)]
+                  backdrop-blur-xl
                 "
               >
 
-                {/* TOP BADGE */}
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: -10,
+                {/* SWIPER */}
+                <Swiper
+                  modules={[
+                    Autoplay,
+                    Pagination,
+                    EffectFade,
+                  ]}
+                  effect="fade"
+                  fadeEffect={{
+                    crossFade: true,
                   }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
+                  speed={1200}
+                  loop={true}
+                  autoplay={{
+                    delay: 3200,
+                    disableOnInteraction: false,
                   }}
-                  transition={{
-                    delay: 1,
-                    duration: 0.5,
+                  pagination={{
+                    clickable: true,
                   }}
-                  className="
-                    absolute left-4 top-4 z-20
-
-                    rounded-full
-                    border border-pink-500/20
-                    bg-black/40
-
-                    px-5 py-2
-                    text-[10px]
-                    uppercase tracking-[0.25em]
-                    text-pink-200
-
-                    backdrop-blur-xl
-                  "
+                  className="heroSwiper"
                 >
-                </motion.div>
 
-                <motion.div
-                  animate={{
-                    y: [0, -8, 0],
-                  }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 4,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <Image
-                    src="/images/sajshringar-logo.jpeg"
-                    alt="Sajshringar by Apeksha"
-                    width={520}
-                    height={520}
-                    priority
-                    className="
-                      h-auto w-full object-contain
+                  {heroImages.map((image, index) => (
+                    <SwiperSlide key={index}>
 
-                      max-w-[200px]
+                      {/* IMAGE CONTAINER */}
+                      <div
+                        className="
+                          relative overflow-hidden
 
-                      sm:max-w-[240px]
+                          rounded-[1.5rem]
 
-                      tablet:max-w-[300px]
+                          bg-[#0b1020]
+                        "
+                      >
 
-                      laptop:max-w-[420px]
-                    "
-                  />
-                </motion.div>
+                        <Image
+                          src={image}
+                          alt={`Hero ${index + 1}`}
+                          width={700}
+                          height={900}
+                          priority
+                          className="
+                            aspect-[4/5]
 
-                {/* BOTTOM BADGE */}
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: 10,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    delay: 1.2,
-                    duration: 0.5,
-                  }}
-                  className="
-                    absolute bottom-4 left-1/2
-                    -translate-x-1/2
+                            h-full
+                            w-full
 
-                    rounded-full
-                    border border-white/10
-                    bg-black/50
+                            rounded-[1.5rem]
 
-                    px-5 py-2
-                    text-xs text-white/80
+                            object-cover
+                            object-center
+                          "
+                        />
 
-                    backdrop-blur-xl
-                  "
-                >
-  
-                </motion.div>
+                        {/* OVERLAY */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </div>
-            </motion.div>
+            </div>
 
-            {/* STATS */}
+            {/* STATS BELOW IMAGE */}
             <motion.div
               initial={{
                 opacity: 0,
-                y: 30,
+                y: 20,
               }}
               animate={{
                 opacity: 1,
                 y: 0,
               }}
               transition={{
-                delay: 1,
-                duration: 0.8,
+                delay: 0.8,
               }}
               className="
-                mt-5
+                mt-6
 
-                flex w-full
-                max-w-[320px]
-                items-center
-                justify-center
-                gap-4
+                flex items-center justify-center
+                gap-5
+
+                rounded-2xl
+                border border-white/10
+
+                bg-[#0d1228]/95
+
+                px-5 py-4
+
+                shadow-[0_0_25px_rgba(255,79,163,0.1)]
+                backdrop-blur-xl
               "
             >
 
-              {/* CARD 1 */}
-              <motion.div
-                whileHover={{
-                  y: -6,
-                }}
-                transition={{
-                  duration: 0.3,
-                }}
-                className="
-                  flex-1 rounded-3xl
-                  border border-white/10
-                  bg-white/[0.03]
+              {/* CLIENTS */}
+              <div className="text-center">
 
-                  p-5 backdrop-blur-xl
-                "
-              >
-                <h3 className="text-3xl font-bold gold-text">
+                <h3 className="text-2xl font-bold gold-text">
                   100+
                 </h3>
 
-                <p className="mt-2 text-sm text-white/65">
+                <p className="text-xs text-white/60">
                   Happy Clients
                 </p>
-              </motion.div>
+              </div>
 
-              {/* CARD 2 */}
-              <motion.div
-                whileHover={{
-                  y: -6,
-                }}
-                transition={{
-                  duration: 0.3,
-                }}
-                className="
-                  flex-1 rounded-3xl
-                  border border-white/10
-                  bg-white/[0.03]
+              {/* DIVIDER */}
+              <div className="h-10 w-px bg-white/10" />
 
-                  p-5 backdrop-blur-xl
-                "
-              >
-                <h3 className="text-3xl font-bold gold-text">
+              {/* SERVICES */}
+              <div className="text-center">
+
+                <h3 className="text-2xl font-bold gold-text">
                   4+
                 </h3>
 
-                <p className="mt-2 text-sm text-white/65">
+                <p className="text-xs text-white/60">
                   Premium Services
                 </p>
-              </motion.div>
+              </div>
             </motion.div>
           </motion.div>
         </div>

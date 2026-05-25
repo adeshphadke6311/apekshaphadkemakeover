@@ -30,3 +30,25 @@ body {
 .heading-font {
   font-family: var(--font-playfair);
 }
+
+.heroSwiper .swiper-pagination {
+  bottom: 14px !important;
+}
+
+.heroSwiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.4);
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.heroSwiper .swiper-pagination-bullet-active {
+  width: 28px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    #ec4899,
+    #facc15
+  );
+}
