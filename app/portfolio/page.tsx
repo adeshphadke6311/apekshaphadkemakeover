@@ -2,7 +2,9 @@
 
 import { useMemo, useRef, useState } from "react";
 
-import { Clock3 } from "lucide-react";
+import {
+  Play,
+} from "lucide-react";
 
 import {
   motion,
@@ -14,8 +16,6 @@ import {
 /* -------------------------------------------------------------------------- */
 
 const portfolioItems = [
-  /* ----------------------------- FEATURED TOP ----------------------------- */
-
   {
     type: "image",
     category: "Bridal",
@@ -57,8 +57,6 @@ const portfolioItems = [
     src: "/videos/bridal3.mp4",
     orientation: "horizontal",
   },
-
-  /* ----------------------------- RANDOM ITEMS ----------------------------- */
 
   {
     type: "image",
@@ -179,7 +177,7 @@ const categories = [
 ];
 
 /* -------------------------------------------------------------------------- */
-/*                              PORTFOLIO PAGE                                */
+/*                               MAIN COMPONENT                               */
 /* -------------------------------------------------------------------------- */
 
 export default function PortfolioPage() {
@@ -190,8 +188,8 @@ export default function PortfolioPage() {
   ] = useState("All");
 
   const [
-    activeVideo,
-    setActiveVideo,
+    pausedVideo,
+    setPausedVideo,
   ] = useState<string | null>(
     null
   );
@@ -210,31 +208,6 @@ export default function PortfolioPage() {
 
     }, [activeCategory]);
 
-  const formatTime = (
-    seconds: number
-  ) => {
-
-    if (
-      !seconds ||
-      isNaN(seconds)
-    )
-      return "";
-
-    const mins =
-      Math.floor(
-        seconds / 60
-      );
-
-    const secs =
-      Math.floor(
-        seconds % 60
-      );
-
-    return `${mins}:${secs
-      .toString()
-      .padStart(2, "0")}`;
-  };
-
   return (
     <main className="min-h-screen bg-[#030312] pb-24 pt-28 text-white">
 
@@ -251,9 +224,7 @@ export default function PortfolioPage() {
                 category === "All"
                   ? portfolioItems.length
                   : portfolioItems.filter(
-                      (
-                        item
-                      ) =>
+                      (item) =>
                         item.category ===
                         category
                     ).length;
@@ -274,7 +245,6 @@ export default function PortfolioPage() {
                       : "border border-white/10 bg-white/5 text-white/70 hover:bg-white/10"
                   }`}
                 >
-
                   {category} (
                   {count})
                 </button>
@@ -345,18 +315,18 @@ export default function PortfolioPage() {
 
                     <VideoCard
                       item={item}
-                      formatTime={formatTime}
-                      activeVideo={
-                        activeVideo
+                      pausedVideo={
+                        pausedVideo
                       }
-                      setActiveVideo={
-                        setActiveVideo
+                      setPausedVideo={
+                        setPausedVideo
                       }
                     />
                   )}
                 </motion.div>
               )
             )}
+
           </AnimatePresence>
         </motion.div>
       </div>
@@ -365,14 +335,13 @@ export default function PortfolioPage() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*                               VIDEO CARD                                   */
+/*                                VIDEO CARD                                  */
 /* -------------------------------------------------------------------------- */
 
 function VideoCard({
   item,
-  formatTime,
-  activeVideo,
-  setActiveVideo,
+  pausedVideo,
+  setPausedVideo,
 }: any) {
 
   const videoRef =
@@ -380,123 +349,119 @@ function VideoCard({
       null
     );
 
-  const [
-    duration,
-    setDuration,
-  ] = useState("");
+  const isPaused =
+    pausedVideo === item.src;
 
-  const isPlaying =
-    activeVideo === item.src;
-
-  /* ---------------- TOGGLE VIDEO ---------------- */
-
-  const toggleVideo =
-    async () => {
-
-      const currentVideo =
-        videoRef.current;
-
-      if (!currentVideo)
-        return;
-
-      /* ---- PAUSE OTHER VIDEOS ---- */
-
-      document
-        .querySelectorAll("video")
-        .forEach((video) => {
-
-          if (
-            video !== currentVideo
-          ) {
-
-            video.pause();
-
-            video.currentTime = 0;
-          }
-        });
-
-      /* ---- TOGGLE CURRENT ---- */
-
-      if (isPlaying) {
-
-        currentVideo.pause();
-
-        currentVideo.currentTime = 0;
-
-        setActiveVideo(null);
-
-      } else {
-
-        try {
-
-          currentVideo.muted =
-            false;
-
-          currentVideo.volume = 1;
-
-          await currentVideo.play();
-
-          setActiveVideo(
-            item.src
-          );
-
-        } catch (error) {
-
-          console.log(error);
-        }
-      }
-    };
-
-  /* ---------------- HOVER PREVIEW ---------------- */
+  /* ---------------------------- HOVER PLAY ---------------------------- */
 
   const handleHover =
     async () => {
 
-      if (
-        activeVideo &&
-        activeVideo !==
-          item.src
-      )
-        return;
+      if (isPaused) return;
 
       const video =
         videoRef.current;
 
-      if (!video)
-        return;
+      if (!video) return;
 
       try {
 
-        video.muted = true;
+        document
+          .querySelectorAll("video")
+          .forEach((v) => {
+
+            if (
+              v !== video
+            ) {
+
+              v.pause();
+
+              v.currentTime = 0;
+            }
+          });
+
+        video.muted =
+          false;
+
+        video.volume = 1;
 
         await video.play();
 
-      } catch (error) {
+      } catch (err) {
 
-        console.log(error);
+        console.log(err);
       }
     };
 
-  /* ---------------- HOVER LEAVE ---------------- */
+  /* ---------------------------- HOVER LEAVE ---------------------------- */
 
   const handleLeave =
     () => {
 
-      if (
-        activeVideo ===
-        item.src
-      )
-        return;
+      if (isPaused) return;
 
       const video =
         videoRef.current;
 
-      if (!video)
-        return;
+      if (!video) return;
 
       video.pause();
 
       video.currentTime = 0;
+    };
+
+  /* ----------------------------- CLICK TOGGLE ----------------------------- */
+
+  const handleClick =
+    async () => {
+
+      const video =
+        videoRef.current;
+
+      if (!video) return;
+
+      if (!video.paused) {
+
+        video.pause();
+
+        setPausedVideo(
+          item.src
+        );
+
+      } else {
+
+        document
+          .querySelectorAll("video")
+          .forEach((v) => {
+
+            if (
+              v !== video
+            ) {
+
+              v.pause();
+
+              v.currentTime = 0;
+            }
+          });
+
+        try {
+
+          video.muted =
+            false;
+
+          video.volume = 1;
+
+          await video.play();
+
+          setPausedVideo(
+            null
+          );
+
+        } catch (err) {
+
+          console.log(err);
+        }
+      }
     };
 
   return (
@@ -516,8 +481,9 @@ function VideoCard({
         ref={videoRef}
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         controls={false}
+        onClick={handleClick}
         className={`w-full cursor-pointer object-cover transition duration-500 group-hover:scale-[1.03]
         ${
           item.orientation ===
@@ -525,27 +491,6 @@ function VideoCard({
             ? "h-[520px] sm:h-[560px]"
             : "h-[280px] sm:h-[340px]"
         }`}
-        onLoadedMetadata={(e) => {
-
-          const realDuration =
-            e.currentTarget
-              .duration;
-
-          if (
-            realDuration &&
-            !isNaN(
-              realDuration
-            )
-          ) {
-
-            setDuration(
-              formatTime(
-                realDuration
-              )
-            );
-          }
-        }}
-        onClick={toggleVideo}
       >
 
         <source
@@ -556,19 +501,17 @@ function VideoCard({
 
       {/* OVERLAY */}
 
-      <div className="pointer-events-none absolute inset-0 bg-black/10 group-hover:bg-black/20 transition duration-300" />
+      <div className="pointer-events-none absolute inset-0 bg-black/10 transition duration-300 group-hover:bg-black/20" />
 
-      {/* DURATION */}
+      {/* SMALL MINIMAL VIDEO ICON */}
 
-      {duration && (
+      <div className="pointer-events-none absolute right-4 top-4 z-20">
 
-        <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full bg-black/60 px-4 py-2 text-sm font-medium backdrop-blur-md">
-
-          <Clock3 className="h-4 w-4 text-pink-400" />
-
-          {duration}
-        </div>
-      )}
+        <Play
+          className="h-4 w-4 text-white drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]"
+          fill="white"
+        />
+      </div>
     </div>
   );
 }
