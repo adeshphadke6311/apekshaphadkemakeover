@@ -212,7 +212,7 @@ export default function Footer() {
                 whileHover={{
                   x: 5,
                 }}
-                href="mailto:contact@sajshringar.com"
+                href="mailto:shriyanshenterprises6311@gmail.com"
                 className="
                   flex items-start gap-3
 
@@ -227,7 +227,7 @@ export default function Footer() {
                   className="mt-1 text-pink-400"
                 />
 
-                <p>contact@sajshringar.com</p>
+                <p>shriyanshenterprises6311@gmail.com</p>
               </motion.a>
 
               <motion.div
@@ -469,7 +469,7 @@ export default function Footer() {
                 </a>
 
                 <a
-                  href="mailto:contact@sajshringar.com"
+                  href="mailto:shriyanshenterprises6311@gmail.com"
                   className="flex items-start gap-2"
                 >
 
@@ -479,7 +479,7 @@ export default function Footer() {
                   />
 
                   <span>
-                    contact@sajshringar.com
+                    shriyanshenterprises6311@gmail.com
                   </span>
                 </a>
 
