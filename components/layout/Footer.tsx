@@ -126,12 +126,8 @@ export default function Footer() {
                 "Home",
                 "Services",
                 "Portfolio",
-                //"Gallery",
                 "Contact",
               ].map((item) => (
-
-
-
 
                 <motion.li
                   key={item}
@@ -202,7 +198,7 @@ export default function Footer() {
 
                 <Phone
                   size={18}
-                  className="mt-1 text-pink-400"
+                  className="mt-1 shrink-0 text-pink-400"
                 />
 
                 <p>+91 7498645883</p>
@@ -224,10 +220,12 @@ export default function Footer() {
 
                 <Mail
                   size={18}
-                  className="mt-1 text-pink-400"
+                  className="mt-1 shrink-0 text-pink-400"
                 />
 
-                <p>shriyanshenterprises6311@gmail.com</p>
+                <p className="break-all leading-relaxed">
+                  shriyanshenterprises6311@gmail.com
+                </p>
               </motion.a>
 
               <motion.div
@@ -239,7 +237,7 @@ export default function Footer() {
 
                 <MapPin
                   size={18}
-                  className="mt-1 text-pink-400"
+                  className="mt-1 shrink-0 text-pink-400"
                 />
 
                 <p>
@@ -444,6 +442,8 @@ export default function Footer() {
                 p-4
 
                 backdrop-blur-xl
+
+                min-w-0
               "
             >
 
@@ -453,46 +453,78 @@ export default function Footer() {
 
               <div className="space-y-4 text-xs text-white/70">
 
+                {/* PHONE */}
                 <a
                   href="tel:+917498645883"
-                  className="flex items-start gap-2"
+                  className="
+                    flex items-start gap-2
+
+                    overflow-hidden
+                  "
                 >
 
                   <Phone
                     size={15}
-                    className="mt-0.5 text-pink-400"
+                    className="
+                      mt-0.5
+                      shrink-0
+                      text-pink-400
+                    "
                   />
 
-                  <span>
+                  <span className="break-all leading-relaxed">
                     +91 7498645883
                   </span>
                 </a>
 
+                {/* EMAIL */}
                 <a
                   href="mailto:shriyanshenterprises6311@gmail.com"
-                  className="flex items-start gap-2"
+                  className="
+                    flex items-start gap-2
+
+                    overflow-hidden
+                  "
                 >
 
                   <Mail
                     size={15}
-                    className="mt-0.5 text-pink-400"
+                    className="
+                      mt-0.5
+                      shrink-0
+                      text-pink-400
+                    "
                   />
 
-                  <span>
+                  <span
+                    className="
+                      break-all
+                      leading-relaxed
+                      text-[11px]
+                    "
+                  >
                     shriyanshenterprises6311@gmail.com
                   </span>
                 </a>
 
-                <div className="flex items-start gap-2">
+                {/* LOCATION */}
+                <div
+                  className="
+                    flex items-start gap-2
+                  "
+                >
 
                   <MapPin
                     size={15}
-                    className="mt-0.5 text-pink-400"
+                    className="
+                      mt-0.5
+                      shrink-0
+                      text-pink-400
+                    "
                   />
 
-                  <span>
-                    Pune,
-                    Maharashtra
+                  <span className="leading-relaxed">
+                    Pune, Maharashtra
                   </span>
                 </div>
               </div>
@@ -527,9 +559,7 @@ export default function Footer() {
 
               <button
                 onClick={() =>
-                  setOpenLinks(
-                    !openLinks
-                  )
+                  setOpenLinks(!openLinks)
                 }
                 className="
                   flex w-full items-center justify-between
@@ -549,9 +579,7 @@ export default function Footer() {
                   }}
                 >
 
-                  <ChevronDown
-                    size={18}
-                  />
+                  <ChevronDown size={18} />
                 </motion.div>
               </button>
 
@@ -579,7 +607,6 @@ export default function Footer() {
                     "Home",
                     "Services",
                     "Portfolio",
-                    // "Gallery",
                     "Contact",
                   ].map((item) => (
 
@@ -650,7 +677,7 @@ export default function Footer() {
                 whileTap={{
                   scale: 0.96,
                 }}
-                href="https://instagram.com"
+                href="https://instagram.com/shriyansh_enterprises"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
