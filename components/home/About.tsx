@@ -1,4 +1,10 @@
 "use client";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/autoplay";
+
+import { Autoplay } from "swiper/modules";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -101,33 +107,97 @@ export default function About() {
                 "
               >
 
-                <Image
-                  src="/images/sajshringar_about.png"
-                  alt="About Sajshringar"
-                  width={700}
-                  height={700}
-                  priority
-                  className="
-                    h-auto
-                    w-full
-                    object-cover
+                <Swiper
+  modules={[Autoplay]}
+  autoplay={{
+    delay: 2500,
+    disableOnInteraction: false,
+  }}
+  loop={true}
+  className="
+    rounded-[1.5rem]
+    overflow-hidden
+    shadow-[0_0_35px_rgba(255,79,163,0.25)]
+  "
+>
+  <SwiperSlide>
+    <img
+      src="/sajshringar_about.png"
+      alt="Bridal Makeup"
+      className="
+  h-[520px]
+  w-full
+  object-cover
+  rounded-[1.5rem]
+"
+    />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img
+      src="/bridal_makeup.png"
+      alt="Bridal Makeup"
+      className="
+  h-[520px]
+  w-full
+  object-cover
+  rounded-[1.5rem]
+"
+    />
+  </SwiperSlide>
 
-                    max-w-[180px]
+  <SwiperSlide>
+    <img
+      src="/aariwork.png"
+      alt="Aari Work"
+      className="
+  h-[520px]
+  w-full
+  object-cover
+  rounded-[1.5rem]
+"
+    />
+  </SwiperSlide>
 
-                    sm:max-w-[230px]
+  <SwiperSlide>
+    <img
+      src="/hairstyle.png"
+      alt="Hairstyle"
+      className="
+  h-[520px]
+  w-full
+  object-cover
+  rounded-[1.5rem]
+"
+    />
+  </SwiperSlide>
 
-                    md:max-w-[280px]
+  <SwiperSlide>
+    <img
+      src="/academy.png"
+      alt="Beauty Academy"
+      className="
+  h-[520px]
+  w-full
+  object-cover
+  rounded-[1.5rem]
+"
+    />
+  </SwiperSlide>
 
-                    tablet:max-w-[300px]
+  <SwiperSlide>
+    <img
+      src="/jwellary.png"
+      alt="Jewellery"
+      className="
+  h-[520px]
+  w-full
+  object-cover
+  rounded-[1.5rem]
+"
+    />
+  </SwiperSlide>
 
-                    laptop:max-w-[460px]
-
-                    rounded-[1.5rem]
-
-                    transition duration-700
-                    hover:scale-105
-                  "
-                />
+</Swiper>
 
                 {/* OVERLAY */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-50" />
@@ -307,7 +377,7 @@ export default function About() {
 
                 md:text-[3.3rem]
 
-                laptop:text-[5rem]
+                laptop:text-[4rem]
               "
             >
               Transforming

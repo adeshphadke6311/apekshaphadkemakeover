@@ -21,7 +21,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const testimonials = [
-  {
+ {
     name: "Priya Sharma",
     role: "Bridal Makeup Client",
     review:
@@ -40,6 +40,108 @@ const testimonials = [
     role: "Beauty Academy Student",
     review:
       "Professional guidance, friendly environment, and excellent practical training. Highly recommended academy.",
+  },
+  {
+    name: "Sayli Korhale",
+    role: "Bridal Makeup Client",
+    review:
+      "Maza bridal makeup khup sundar jhala. Maharashtrian bridal look exactly jasa pahije hota tasa mila. Makeup full day long lasting hota.",
+  },
+  {
+    name: "Monali Phadke",
+    role: "Aari Work Student",
+    review:
+      "Aari work classes khup mast aahet. Teaching simple aahe mhanun easily samajta. Beautiful blouse designs shikayla milale.",
+  },
+  {
+    name: "Shejal Borkar",
+    role: "Hairstyle Client",
+    review:
+      "Traditional hairstyle khup pretty disat hoti. Bridal hairstyle full function madhe perfect rahili.",
+  },
+  {
+    name: "Rutuja Dumal",
+    role: "Bridal Makeup Client",
+    review:
+      "Best bridal makeup service in Pune side. Hairstyle ani saree draping pan khup perfect hota.",
+  },
+  {
+    name: "Aakansha Sawant",
+    role: "Bridal Makeup Client",
+    review:
+      "Royal bridal look mila. Makeup natural ani glowing disat hota. Wedding madhe saglyanni khup compliments dile.",
+  },
+  {
+    name: "Sakshi Pawar",
+    role: "Aari Work Student",
+    review:
+      "Best Aari work training academy. Handwork designs ani finishing professional level chi aahe.",
+  },
+  {
+    name: "Divya More",
+    role: "Hairstyle Client",
+    review:
+      "Modern ani traditional hairstyle donhi khup professionally kele. Khup beautiful experience hota.",
+  },
+  {
+    name: "Harshada Shinde",
+    role: "Beauty Academy Student",
+    review:
+      "Makeup academy madhe practical training khup chan aahe. Friendly environment mule confidence pan vadla.",
+  },
+  {
+  name: "Ashwini Phadke",
+  role: "Aari Work Student",
+  review:
+    "Aari work classes khup chan aahet. Simple Marathi madhun teaching karto mhanun sagla easily samajta.",
+  },
+  {
+  name: "Monali Kate",
+  role: "Aari Work Student",
+  review:
+    "Beautiful blouse designs ani handwork professionally shikayla milale. Best Aari work training experience.",
+  },
+  {
+  name: "Sakshi Korhale",
+  role: "Aari Work Student",
+  review:
+    "Aari work finishing khup neat aahe. Practical training mule confidence pan khup vadla.",
+  },
+  {
+  name: "Aditi Shinde",
+  role: "Aari Work Student",
+  review:
+    "Traditional Aari work designs khup mast aahet. Teaching style friendly ani easy aahe.",
+  },
+  {
+  name: "Vidya Dhamale",
+  role: "Aari Work Student",
+  review:
+    "Best Aari work academy for beginners. Step by step guidance mule quickly learning zala.",
+  },
+  {
+  name: "Priyanka Divekar",
+  role: "Aari Work Student",
+  review:
+    "Blouse handwork designs khup unique aahet. Full professional training experience mila.",
+  },
+  {
+  name: "Monali Divekar",
+  role: "Aari Work Student",
+  review:
+    "Aari work classes madhe khup support milto. Designs modern ani traditional donhi shikayla miltat.",
+  },
+  {
+  name: "Sayali Phadke",
+  role: "Hairstyle Client",
+  review:
+    "Bridal hairstyle khup beautiful disat hoti. Traditional Maharashtrian look perfect complete jhala.",
+  },
+  {
+  name: "Nikita Nigade",
+  role: "Aari Work Student",
+  review:
+    "I had the best learning experience in Aari work classes. The teaching method is very easy to understand, and I learned beautiful blouse handwork designs professionally. Practical training sessions were exciting and helped me improve my skills with confidence :) .",
   },
 ];
 

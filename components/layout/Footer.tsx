@@ -126,7 +126,6 @@ export default function Footer() {
                 "Home",
                 "Services",
                 "Portfolio",
-                "Gallery",
                 "Contact",
               ].map((item) => (
 
