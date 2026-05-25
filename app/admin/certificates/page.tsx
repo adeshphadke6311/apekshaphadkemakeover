@@ -10,7 +10,6 @@ import {
   addDoc,
   collection,
   getDocs,
-  Timestamp,
 } from "firebase/firestore";
 
 import {
@@ -42,7 +41,7 @@ type Certificate = {
   studentEmail?: string;
   course?: string;
   certificateUrl?: string;
-  createdAt?: Timestamp;
+  createdAt?: number;
 };
 
 export default function CertificatesPage() {
@@ -112,8 +111,8 @@ export default function CertificatesPage() {
         );
 
         setCertificates(
-          data.reverse()
-        );
+  [...data].reverse()
+);
 
       } catch (error) {
 
@@ -502,20 +501,19 @@ export default function CertificatesPage() {
 
         // SAVE FIRESTORE
         await addDoc(
-          collection(
-            db,
-            "certificates"
-          ),
-          {
-            studentName,
-            studentEmail,
-            course,
-            certificateUrl:
-              pdfUrl,
-            createdAt:
-              new Date(),
-          }
-        );
+  collection(
+    db,
+    "certificates"
+  ),
+  {
+    studentName,
+    studentEmail,
+    course,
+    certificateUrl: "",
+    createdAt:
+      Date.now(),
+  }
+);
 
         // DOWNLOAD
         const link =
