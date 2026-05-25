@@ -6,6 +6,9 @@ import Testimonials from "@/components/home/Testimonials";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import WhatsappButton from "@/components/shared/WhatsappButton";
+import BirthdayPopup from "@/components/birthdaypopup/BirthdayPopup";
+
+
 
 export default function Home() {
   return (
@@ -13,6 +16,8 @@ export default function Home() {
     
 
       <main>
+
+<BirthdayPopup />
         <Hero />
         <Services />
         <About />

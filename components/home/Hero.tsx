@@ -224,7 +224,7 @@ export default function Hero() {
               </Link>
 
               <Link
-                href="/gallery"
+                href="/portfolio"
                 className="
                   rounded-full
                   border border-white/10
