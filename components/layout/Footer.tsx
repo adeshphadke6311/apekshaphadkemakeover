@@ -284,7 +284,7 @@ export default function Footer() {
                 whileTap={{
                   scale: 0.96,
                 }}
-                href="https://instagram.com"
+                href="https://instagram.com/shriyansh_enterprises"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="

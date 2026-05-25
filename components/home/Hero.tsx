@@ -18,10 +18,10 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
 const heroImages = [
-  "/images/sajshringar-logo.jpeg",
   "/images/sajshringar_hero1.png",
   "/images/sajshringar_hero2.png",
   "/images/sajshringar_hero3.png",
+  "/images/sajshringar-logo.jpeg",
 ];
 
 export default function Hero() {
