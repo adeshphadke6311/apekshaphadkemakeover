@@ -22,24 +22,122 @@ import "swiper/css/pagination";
 
 const testimonials = [
   {
-    name: "Priya Sharma",
+    name: "Sayli Korhale",
     role: "Bridal Makeup Client",
     review:
-      "Absolutely loved the bridal makeover. The look was elegant, flawless, and exactly what I dreamed of for my wedding.",
+      "Absolutely loved my bridal look. Makeup was elegant, long lasting, and looked beautiful in every photo.",
   },
 
   {
-    name: "Sneha Patil",
+    name: "Monali Phadke",
     role: "Aari Work Student",
     review:
-      "The teaching style is amazing and easy to understand. I learned beautiful Aari work designs professionally.",
+      "Teaching style is very easy to understand. I learned multiple elegant Aari work patterns professionally.",
   },
 
   {
-    name: "Rutuja More",
-    role: "Beauty Academy Student",
+    name: "Shejal Borkar",
+    role: "Hairstyle Client",
     review:
-      "Professional guidance, friendly environment, and excellent practical training. Highly recommended academy.",
+      "Beautiful bridal hairstyle with perfect finishing. Hairstyle stayed perfectly throughout the event.",
+  },
+
+  {
+    name: "Rutuja Dhumal",
+    role: "Bridal Makeup Client",
+    review:
+      "Very professional service and soft glam makeup. I received so many compliments on my special day.",
+  },
+
+  {
+    name: "Ashwini Phadke",
+    role: "Aari Work Student",
+    review:
+      "Classes were practical and creative. Designs explained step by step in a very simple way.",
+  },
+
+  {
+    name: "Sayli Phadke",
+    role: "Hairstyle Client",
+    review:
+      "Loved the hairstyle and hair accessories combination. It looked elegant and suited my outfit perfectly.",
+  },
+
+  {
+    name: "Aakansha Sawant",
+    role: "Bridal Makeup Client",
+    review:
+      "माझा bridal makeup खूप सुंदर झाला होता. प्रत्येक detail खूप perfect आणि classy वाटली.",
+  },
+
+  {
+    name: "Sakshi Pawar",
+    role: "Aari Work Student",
+    review:
+      "Aari work training was amazing. Now I can confidently create beautiful embroidery designs on my own.",
+  },
+
+  {
+    name: "Divya More",
+    role: "Hairstyle Client",
+    review:
+      "Hairstyle was neat, stylish, and long lasting. Very happy with the final bridal look.",
+  },
+
+  {
+    name: "Aakansha Parbhane",
+    role: "Bridal Makeup Client",
+    review:
+      "The makeup looked natural and premium. Hairstyle and jewellery matching was also perfectly done.",
+  },
+
+  {
+    name: "Monali Kate",
+    role: "Aari Work Student",
+    review:
+      "खूप छान teaching आहे. प्रत्येक design खूप व्यवस्थित आणि patience ने शिकवले जाते.",
+  },
+
+  {
+    name: "Harshada Shinde",
+    role: "Bridal Makeup Client",
+    review:
+      "Excellent bridal service with neat finishing and beautiful look. Totally satisfied with the makeover.",
+  },
+
+  {
+    name: "Sakshi Korhale",
+    role: "Aari Work Student",
+    review:
+      "Professional guidance and friendly environment. I improved my embroidery skills very quickly.",
+  },
+
+  {
+    name: "Aditi Shinde",
+    role: "Aari Work Student",
+    review:
+      "Best place to learn creative Aari work. Training quality and support are really excellent.",
+  },
+
+  {
+    name: "Vidya Dhamale",
+    role: "Aari Work Student",
+    review:
+      "I learned beautiful traditional and modern embroidery patterns. Classes are very informative.",
+  },
+
+  {
+    name: "Priyanka Divekar",
+    role: "Aari Work Student",
+    review:
+      "Very supportive teaching and creative ideas. Every session helped me improve my work professionally.",
+  },
+
+  {
+    name: "Monali Divekar",
+    role: "Aari Work Student",
+    review:
+      "खूप सुंदर designs शिकायला मिळाले. Friendly atmosphere मुळे learning experience खूप चांगला होता.",
   },
 ];
 
