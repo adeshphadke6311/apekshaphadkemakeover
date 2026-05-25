@@ -10,27 +10,31 @@ import "swiper/css/pagination";
 
 const galleryImages = [
   {
-    image: "/images/sajshringar-logo.jpeg",
-    title: "Bridal Transformation",
-    description: "Elegant professional makeup artistry",
+    image: "/images/bridal_makeup.png",
+    title: "Bridal Makeup",
+    description:
+      "Elegant bridal makeover crafted with flawless beauty artistry.",
   },
 
   {
-    image: "/images/sajshringar_about.png",
-    title: "Luxury Bridal Look",
-    description: "Premium beauty styling experience",
+    image: "/images/hairstyle.png",
+    title: "Luxury Hairstyle",
+    description:
+      "Stylish bridal hairstyles designed with grace and perfection.",
   },
 
   {
-    image: "/images/sajshringar-logo.jpeg",
+    image: "/images/aariwork.png",
     title: "Aari Work Design",
-    description: "Creative embroidery craftsmanship",
+    description:
+      "Handcrafted embroidery patterns inspired by traditional elegance.",
   },
 
   {
-    image: "/images/sajshringar_about.png",
-    title: "Jewellery Creation",
-    description: "Traditional handcrafted elegance",
+    image: "/images/jewelry.png",
+    title: "Jewellery Making",
+    description:
+      "Beautiful handcrafted jewellery creations for every special occasion.",
   },
 ];
 
@@ -43,15 +47,11 @@ export default function Gallery() {
         bg-[#070b1a]
 
         py-12
-
         sm:py-14
-
-        tablet:py-12
-
-        laptop:py-15
+        tablet:py-14
+        laptop:py-16
       "
     >
-
       {/* BACKGROUND GLOW */}
       <div className="absolute left-0 top-0 h-[300px] w-[300px] rounded-full bg-pink-500/10 blur-3xl" />
 
@@ -68,7 +68,6 @@ export default function Gallery() {
           lg:px-8
         "
       >
-
         {/* HEADING */}
         <motion.div
           initial={{
@@ -94,7 +93,6 @@ export default function Gallery() {
             laptop:mb-16
           "
         >
-
           <p
             className="
               mb-3
@@ -150,9 +148,9 @@ export default function Gallery() {
             "
           >
             Explore bridal transformations,
-            luxury beauty artistry,
+            luxury hairstyles,
             handcrafted jewellery,
-            and professional beauty work
+            and traditional aari work
             crafted with elegance and perfection.
           </p>
         </motion.div>
@@ -174,14 +172,13 @@ export default function Gallery() {
             once: true,
           }}
         >
-
           <Swiper
             modules={[Autoplay, Pagination]}
             spaceBetween={24}
             loop={true}
             speed={1000}
             autoplay={{
-              delay: 2800,
+              delay: 2600,
               disableOnInteraction: false,
             }}
             pagination={{
@@ -206,14 +203,11 @@ export default function Gallery() {
             }}
             className="pb-14"
           >
-
             {galleryImages.map((item, index) => (
               <SwiperSlide key={index}>
-
                 <motion.div
                   whileHover={{
                     y: -8,
-                    scale: 1.01,
                   }}
                   transition={{
                     duration: 0.35,
@@ -235,66 +229,46 @@ export default function Gallery() {
                     hover:shadow-[0_0_55px_rgba(255,79,163,0.16)]
                   "
                 >
-
                   {/* IMAGE */}
-                  <div className="relative overflow-hidden">
-
+                  <div className="relative overflow-hidden rounded-[2rem]">
                     <Image
                       src={item.image}
                       alt={item.title}
-                      width={600}
-                      height={800}
+                      width={700}
+                      height={900}
                       priority
                       className="
-                        h-[260px]
+                        h-[320px]
                         w-full
                         object-cover
 
                         transition duration-700
-                        group-hover:scale-110
+                        group-hover:scale-105
 
-                        sm:h-[320px]
+                        sm:h-[360px]
 
-                        tablet:h-[380px]
+                        tablet:h-[420px]
 
-                        laptop:h-[430px]
+                        laptop:h-[450px]
                       "
                     />
 
                     {/* OVERLAY */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-90" />
-
-                    {/* BADGE */}
-                    <div
-                      className="
-                        absolute left-4 top-4
-
-                        rounded-full
-                        border border-pink-400/20
-                        bg-black/30
-
-                        px-4 py-2
-
-                        text-[10px]
-                        uppercase
-                        tracking-[0.25em]
-                        text-pink-300
-
-                        backdrop-blur-xl
-
-                        sm:text-xs
-                      "
-                    >
-      
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                   </div>
 
                   {/* CONTENT */}
-                  <div className="absolute bottom-0 left-0 w-full p-5 sm:p-6">
+                  <div
+                    className="
+                      absolute bottom-0 left-0 w-full
 
+                      p-5
+                      sm:p-6
+                    "
+                  >
                     <div
                       className="
-                        translate-y-6
+                        translate-y-4
                         opacity-0
 
                         transition-all duration-500
@@ -303,7 +277,6 @@ export default function Gallery() {
                         group-hover:opacity-100
                       "
                     >
-
                       <h3
                         className="
                           text-xl
@@ -318,7 +291,7 @@ export default function Gallery() {
 
                       <p
                         className="
-                          mt-3
+                          mt-2
                           text-sm
                           leading-relaxed
                           text-white/70
@@ -336,7 +309,7 @@ export default function Gallery() {
 
                       text-5xl
                       font-bold
-                      text-white/[0.04]
+                      text-white/[0.05]
                     "
                   >
                     0{index + 1}
