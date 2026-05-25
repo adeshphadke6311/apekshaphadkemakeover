@@ -11,7 +11,6 @@ import {
   X,
   Sparkles,
   Heart,
-  Stars,
 } from "lucide-react";
 
 export default function BirthdayPopup() {
@@ -51,28 +50,55 @@ export default function BirthdayPopup() {
           className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-black/75 backdrop-blur-md p-4"
         >
 
+          {/* BACKGROUND GLOW */}
+
+          <div className="absolute inset-0 overflow-hidden">
+
+            <motion.div
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.2, 0.5, 0.2],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+              }}
+              className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-pink-500/20 blur-3xl"
+            />
+
+            <motion.div
+              animate={{
+                scale: [1.2, 1, 1.2],
+                opacity: [0.2, 0.5, 0.2],
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+              }}
+              className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-yellow-400/20 blur-3xl"
+            />
+
+          </div>
+
           {/* FLOATING PARTICLES */}
 
-          {[...Array(12)].map(
+          {[...Array(14)].map(
             (_, i) => (
 
               <motion.div
                 key={i}
                 initial={{
                   opacity: 0,
-                  y: 50,
+                  y: 80,
                 }}
                 animate={{
                   opacity: [0, 1, 0],
-                  y: [
-                    50,
-                    -500,
-                  ],
+                  y: [80, -600],
                   x: [
                     0,
                     Math.random() *
-                      100 -
-                      50,
+                      120 -
+                      60,
                   ],
                   rotate: [
                     0,
@@ -87,7 +113,7 @@ export default function BirthdayPopup() {
                   repeat:
                     Infinity,
                   delay:
-                    i * 0.3,
+                    i * 0.4,
                 }}
                 className="absolute bottom-0 text-pink-300/70"
                 style={{
@@ -98,17 +124,13 @@ export default function BirthdayPopup() {
                 }}
               >
 
-                {i % 3 === 0 ? (
+                {i % 2 === 0 ? (
 
                   <Sparkles className="h-5 w-5" />
 
-                ) : i % 2 === 0 ? (
-
-                  <Heart className="h-4 w-4" />
-
                 ) : (
 
-                  <Stars className="h-4 w-4" />
+                  <Heart className="h-4 w-4" />
 
                 )}
 
@@ -116,35 +138,35 @@ export default function BirthdayPopup() {
             )
           )}
 
-          {/* MAIN POPUP */}
+          {/* POPUP */}
 
           <motion.div
             initial={{
               opacity: 0,
-              scale: 0.6,
-              rotateX: 40,
-              y: -250,
+              y: 500,
+              scale: 0.75,
+              rotateX: 25,
             }}
             animate={{
               opacity: 1,
+              y: 0,
               scale: 1,
               rotateX: 0,
-              y: 0,
             }}
             exit={{
               opacity: 0,
+              y: -250,
               scale: 0.8,
-              y: -120,
             }}
             transition={{
               type: "spring",
-              stiffness: 90,
+              stiffness: 80,
               damping: 14,
             }}
-            className="relative w-full max-w-3xl overflow-hidden rounded-[2.5rem] border border-pink-300/20 bg-black shadow-[0_0_120px_rgba(255,105,180,0.35)]"
+            className="relative w-full max-w-5xl overflow-hidden rounded-[2.7rem] border border-pink-300/20 bg-black shadow-[0_0_120px_rgba(255,105,180,0.35)]"
           >
 
-            {/* SHIMMER ANIMATION */}
+            {/* SHIMMER EFFECT */}
 
             <motion.div
               animate={{
@@ -154,7 +176,7 @@ export default function BirthdayPopup() {
                 ],
               }}
               transition={{
-                duration: 2.8,
+                duration: 3,
                 repeat: Infinity,
                 repeatDelay: 1,
               }}
@@ -165,7 +187,7 @@ export default function BirthdayPopup() {
 
             <motion.button
               whileHover={{
-                scale: 1.12,
+                scale: 1.1,
                 rotate: 90,
               }}
               whileTap={{
@@ -174,7 +196,7 @@ export default function BirthdayPopup() {
               onClick={() =>
                 setOpen(false)
               }
-              className="absolute right-5 top-5 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md transition duration-300 hover:bg-pink-500"
+              className="absolute right-5 top-5 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-md transition duration-300 hover:bg-pink-500"
             >
 
               <X className="h-5 w-5" />
@@ -185,7 +207,7 @@ export default function BirthdayPopup() {
 
             <motion.img
               initial={{
-                scale: 1.15,
+                scale: 1.12,
               }}
               animate={{
                 scale: 1,
@@ -195,126 +217,64 @@ export default function BirthdayPopup() {
               }}
               src="/birthday-image/birthday-collage.png"
               alt="Birthday"
-              className="h-full max-h-[85vh] w-full object-cover"
+              className="h-full max-h-[90vh] w-full object-cover"
             />
 
-            {/* OVERLAY */}
+            {/* GOLDEN LIGHT */}
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
 
-            {/* CONTENT */}
+            {/* SPARK LIGHTS */}
 
-            <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-12 text-center">
+            {[...Array(12)].map(
+              (_, i) => (
 
-              {/* TITLE */}
+                <motion.div
+                  key={i}
+                  animate={{
+                    y: [0, -15, 0],
+                    opacity: [
+                      0.4,
+                      1,
+                      0.4,
+                    ],
+                  }}
+                  transition={{
+                    duration:
+                      2 +
+                      Math.random() *
+                        2,
+                    repeat:
+                      Infinity,
+                    delay:
+                      i * 0.3,
+                  }}
+                  className="absolute rounded-full bg-white/70 blur-xl"
+                  style={{
+                    width:
+                      8 +
+                      Math.random() *
+                        10,
+                    height:
+                      8 +
+                      Math.random() *
+                        10,
+                    left: `${
+                      Math.random() *
+                      100
+                    }%`,
+                    top: `${
+                      Math.random() *
+                      100
+                    }%`,
+                  }}
+                />
+              )
+            )}
 
-              <motion.h1
-                initial={{
-                  opacity: 0,
-                  y: 50,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.3,
-                  duration: 0.8,
-                }}
-                className="mb-4 text-4xl font-bold tracking-wide text-white drop-shadow-[0_0_25px_rgba(255,255,255,0.35)] md:text-6xl"
-              >
+            {/* OUTER BORDER */}
 
-                🎉 Happy Birthday 🎉
-
-              </motion.h1>
-
-              {/* SUBTITLE */}
-
-              <motion.h2
-                initial={{
-                  opacity: 0,
-                  scale: 0.8,
-                }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                transition={{
-                  delay: 0.6,
-                }}
-                className="mb-5 text-xl font-semibold text-pink-200 md:text-3xl"
-              >
-
-                To The Most Beautiful Soul 💖
-
-              </motion.h2>
-
-              {/* MESSAGE */}
-
-              <motion.p
-                initial={{
-                  opacity: 0,
-                  y: 40,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  delay: 0.9,
-                }}
-                className="max-w-2xl text-sm leading-8 text-white/90 md:text-lg"
-              >
-
-                Wishing you endless happiness,
-                success, laughter and magical memories ✨
-                <br />
-                May your smile always shine brighter
-                than the stars and your dreams
-                come true forever 🌸
-
-              </motion.p>
-
-              {/* GLOW LINE */}
-
-              <motion.div
-                initial={{
-                  width: 0,
-                  opacity: 0,
-                }}
-                animate={{
-                  width: 220,
-                  opacity: 1,
-                }}
-                transition={{
-                  delay: 1.1,
-                  duration: 1,
-                }}
-                className="mt-8 h-[2px] rounded-full bg-gradient-to-r from-transparent via-pink-300 to-transparent"
-              />
-
-              {/* BOTTOM FLOATING TEXT */}
-
-              <motion.p
-                animate={{
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                }}
-                className="mt-5 text-xs tracking-[0.3em] text-pink-200/80 md:text-sm"
-              >
-
-                WITH LOVE 💕
-
-              </motion.p>
-
-            </div>
-
-            {/* OUTER GLOW */}
-
-            <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] ring-1 ring-white/10" />
+            <div className="pointer-events-none absolute inset-0 rounded-[2.7rem] ring-1 ring-white/10" />
 
           </motion.div>
         </motion.div>
