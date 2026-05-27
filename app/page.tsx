@@ -17,7 +17,7 @@ export default function Home() {
 
       <main>
 
-<BirthdayPopup />
+
         <Hero />
         <Services />
         <About />
