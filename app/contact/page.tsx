@@ -159,7 +159,7 @@ ${formData.message}
                   </h2>
 
                   <p className="mt-2 text-white/70">
-                    +91 9021962467
+                    +91 7498645883
                   </p>
                 </div>
               </div>
